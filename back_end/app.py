@@ -37,8 +37,8 @@ api.add_resource(Authentication.UserLogin, '/login')
 api.add_resource(Authentication.UserLogout, '/logout')
 api.add_resource(Authentication.DemoProtectedRoute, '/protected')
 
-import resources.Account as Account
-api.add_resource(Account.User, '/user')
+import resources.Task as Task
+api.add_resource(Task.AllTasksResource, '/alltasks')
 
 if __name__ == '__main__':
     app.run(debug=True)
