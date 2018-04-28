@@ -1,5 +1,5 @@
 import React from 'react'
-import { Card, Spin } from 'antd'
+import { Card } from 'antd'
 
 const valueStyle = {
   overflow: 'hidden',
@@ -21,14 +21,13 @@ const renderValue = value => {
       totalDom = null
       break
     case 'function':
-      totalDom = <div style={ valueStyle }>{ value() }</div>
+      totalDom = <div style={valueStyle}>{value()}</div>
       break
     default:
-      totalDom = <div style={ valueStyle }>{ value }</div>
+      totalDom = <div style={valueStyle}>{value}</div>
   }
   return totalDom
 }
-
 
 const chartCardStyle = {
   position: 'relative'
@@ -91,49 +90,47 @@ const itemStyle = {
 const itemValueStyle = {}
 
 const TaskCard = ({
-                    contentHeight,
-                    missionLocation,
-                    avatar,
-                    missionPoint,
-                    missionName,
-                    footer,
-                    children,
-                    ...rest
-                  }) => {
+  contentHeight,
+  missionLocation,
+  avatar,
+  missionPoint,
+  missionName,
+  footer,
+  children,
+  ...rest
+}) => {
   const content = (
-    <div style={ chartCardStyle }>
-      <div style={ chartCardTopStyle }>
-        <div style={ avatarStyle }>{ avatar }</div>
-        <div style={ { 'float': 'left' } }>
-          <div style={ metaStyle }>
-            <span style={ locationStyle }>{ missionLocation }</span>
-            <span style={ pointStyle }>{ missionPoint }</span>
+    <div style={chartCardStyle}>
+      <div style={chartCardTopStyle}>
+        <div style={avatarStyle}>{avatar}</div>
+        <div style={{ float: 'left' }}>
+          <div style={metaStyle}>
+            <span style={locationStyle}>{missionLocation}</span>
+            <span style={pointStyle}>{missionPoint}</span>
           </div>
-          { renderValue(missionName) }
+          {renderValue(missionName)}
         </div>
       </div>
-      { children && (
-        <div style={ {
-          height: contentHeight || 'auto',
-          marginBottom: '12px',
-          position: 'relative',
-          width: '100%'
-        } }>
-          <div style={ contentHeight && contentFixedStyle }>{ children }</div>
+      {children && (
+        <div
+          style={{
+            height: contentHeight || 'auto',
+            marginBottom: '12px',
+            position: 'relative',
+            width: '100%'
+          }}
+        >
+          <div style={contentHeight && contentFixedStyle}>{children}</div>
         </div>
-      ) }
-      { footer && (
-        <div style={ footerStyle }>
-          { footer }
-        </div>
-      ) }
+      )}
+      {footer && <div style={footerStyle}>{footer}</div>}
     </div>
   )
 
   return (
-    <Card bodyStyle={ { padding: '20px 24px 8px 24px' } } { ...rest }>
-      <div style={ itemStyle }>
-        <span style={ itemValueStyle }>{ content }</span>
+    <Card bodyStyle={{ padding: '20px 24px 8px 24px' }} {...rest}>
+      <div style={itemStyle}>
+        <span style={itemValueStyle}>{content}</span>
       </div>
     </Card>
   )

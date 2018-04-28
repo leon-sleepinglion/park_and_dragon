@@ -1,6 +1,7 @@
 import React, { Component, Fragment } from 'react'
-import { Col, Layout, Row, } from 'antd'
-import { Field, TaskCard } from '../components'
+import { Col, Layout, Row } from 'antd'
+import { Field, TaskCard } from '../components/presentational'
+import { withTaskAction } from '../components/container'
 
 const { Content } = Layout
 
@@ -10,7 +11,7 @@ const topColResponsiveProps = {
   md: 12,
   lg: 12,
   xl: 6,
-  style: { marginBottom: 24 },
+  style: { marginBottom: 24 }
 }
 
 const fieldValue = {
@@ -25,53 +26,40 @@ const fieldValueStyle = {
   2: '#2ecc71'
 }
 
-export default class Tasks extends Component {
-
+class Tasks extends Component {
   render() {
-    const missionCard = {
-      content: {
-        missionId: '1234',
-        missionName: 'Mission A',
-        missionDescription: 'This is to buy something from store A',
-        missionLocation: 'Location A',
-        missionPoint: '100',
-        missionStatus: 0 // 0 = not yet, 1 = doing, 2 = done
-      }
-    }
-    const missions = [
-      missionCard,
-      missionCard,
-      missionCard,
-      missionCard,
-      missionCard,
-      missionCard,
-      missionCard,
-      missionCard
-    ]
-
-
+    const { tasks } = this.props
     return (
       <Layout>
-        <Content style={ { margin: '24px 24px 0', height: '100%' } }>
+        <Content style={{ margin: '24px 24px 0', height: '100%' }}>
           <Fragment>
-            <Row gutter={ 24 }>
-              { missions.map((card, cardIndex) =>
-                <Col key={ `col${cardIndex}` } { ...topColResponsiveProps }>
+            <Row gutter={24}>
+              {tasks.map((card, cardIndex) => (
+                <Col key={`col${cardIndex}`} {...topColResponsiveProps}>
                   <TaskCard
-                    bordered={ false }
-                    missionLocation={ card.content.missionLocation }
-                    missionPoint={ card.content.missionPoint }
-                    missionName={ card.content.missionName }
-                    footer={ <Field label="Status:"
-                                    labelStyle={ { marginRight: 10 } }
-                                    value={ fieldValue[card.content.missionStatus] }
-                                    valueStyle={ { color: fieldValueStyle[card.content.missionStatus] } }/> }
-                    key={ `col${cardIndex}task${cardIndex}` }
+                    bordered={false}
+                    missionLocation={card.content.missionLocation}
+                    missionPoint={card.content.missionPoint}
+                    missionName={card.content.missionName}
+                    footer={
+                      <Field
+                        label="Status:"
+                        labelStyle={{ marginRight: 10 }}
+                        value={fieldValue[card.content.missionStatus]}
+                        valueStyle={{
+                          color: fieldValueStyle[card.content.missionStatus]
+                        }}
+                      />
+                    }
+                    key={`col${cardIndex}task${cardIndex}`}
                   >
-                    <Field value={ card.content.missionDescription } style={ { overflow: 'display' } }/>
+                    <Field
+                      value={card.content.missionDescription}
+                      style={{ overflow: 'display' }}
+                    />
                   </TaskCard>
-                </Col>)
-              }
+                </Col>
+              ))}
             </Row>
           </Fragment>
         </Content>
@@ -79,3 +67,5 @@ export default class Tasks extends Component {
     )
   }
 }
+
+export default withTaskAction(Tasks)

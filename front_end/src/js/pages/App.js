@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { Route, Switch, Redirect, BrowserRouter } from 'react-router-dom'
-import { createStore, combineReducers } from 'redux'
+import { createStore } from 'redux'
 import { Provider } from 'react-redux'
 import reducers from '../reducers'
 
@@ -15,11 +15,7 @@ import Shop from './Shop'
 import Tasks from './Tasks'
 import User from './User'
 
-const store = createStore(
-  combineReducers({
-    ...reducers
-  })
-)
+const store = createStore(reducers)
 
 export default class App extends Component {
   render() {
