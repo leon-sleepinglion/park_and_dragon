@@ -112,6 +112,10 @@ class UserItemModel(db.Model):
     @classmethod
     def item_own_by_user(cls, user_id):
         return cls.query.filter_by(user_id=user_id)
+
+    def save(self):
+        db.session.add(self)
+        db.session.commit()
     
     
     
