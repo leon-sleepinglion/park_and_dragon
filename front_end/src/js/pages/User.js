@@ -1,28 +1,24 @@
 import React, { Component, Fragment } from 'react'
 import { Col, Row, Icon, Card } from 'antd'
 import UserProfileHeader from '../layouts/UserProfileHeader'
-import { Description, DescriptionList, StepCard } from '../components/presentational'
-import characterImage from '../../assets/character1.png'
-
 import {
   Description,
   DescriptionList,
   StepCard
 } from '../components/presentational'
+import { withUserAction } from '../components/container'
 
-export default class User extends Component {
-  state = {}
-
+class User extends Component {
   render() {
-    // const { userId, username, level, joinedSince, status, itemOwned } = this.props
-    const { userId, username, level, joinedSince, status, itemOwned } = {
-      userId: '123444411123123',
-      username: 'kamwoh',
-      level: '1234',
-      joinedSince: '2017-07-17',
-      status: 'Gold',
-      itemOwned: '1234'
-    }
+    const {
+      userId,
+      username,
+      level,
+      joinedSince,
+      status,
+      itemOwned,
+      pic
+    } = this.props
 
     const textSecondaryStyle = {
       color: 'rgba(0,0,0,0.45)'
@@ -115,11 +111,11 @@ export default class User extends Component {
       <div style={{ padding: 20 }}>
         <Card bordered={false} title={`User ID: ${userId}`}>
           <UserProfileHeader
-            logoSize={ '140px' }
-            logoImageSource={ characterImage }
-            action={ action }
-            description={ description }
-            extraContent={ extraContent }
+            logoSize={'140px'}
+            logoImageSource={pic}
+            action={action}
+            description={description}
+            extraContent={extraContent}
           />
         </Card>
         <StepCard
@@ -144,19 +140,10 @@ export default class User extends Component {
               {joinedSince}
             </Description>
           </DescriptionList>
-          <DescriptionList gutter={24} style={{ marginTop: '12px' }}>
-            <Description title="Username" titleStyle={titleStyle} span={8}>
-              {username}
-            </Description>
-            <Description title="Level" titleStyle={titleStyle} span={8}>
-              {level}
-            </Description>
-            <Description title="Joined since" titleStyle={titleStyle} span={8}>
-              {joinedSince}
-            </Description>
-          </DescriptionList>
         </Card>
       </div>
     )
   }
 }
+
+export default withUserAction(User)
