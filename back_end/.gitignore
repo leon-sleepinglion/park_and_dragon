@@ -60,3 +60,4 @@ target/
 .idea/
 .vscode
 database.sqlite3
+try.py

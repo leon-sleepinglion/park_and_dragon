@@ -8,7 +8,7 @@ from db import db, ma
 
 class TaskSchema(ma.ModelSchema):
     class Meta:
-		model = TaskModel
+        model = TaskModel
 
 class AllTasksResource(Resource):
 
@@ -16,9 +16,10 @@ class AllTasksResource(Resource):
         user_id = request.args.get('user_id')
         try:
             task_schema = TaskSchema()
-            all_tasks = TaskModel.get_all()
-            all_tasks = [json.loads(task_schema.dumps(x)) for x in all_tasks]
-            return all_tasks, 200
+            all_tasks = TaskModel.get_by_user_id(user_id)
+            # gg = task_schema.dump(all_tasks[0]).data
+            all_tasks = [task_schema.dump(x).data for x in all_tasks]
+            return all_tasks
         except:
             print(traceback.format_exc())
             return {'message': 'An error occurred. Check console for error message.'}, 400

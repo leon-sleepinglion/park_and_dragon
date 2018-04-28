@@ -22,13 +22,24 @@ with app.app_context():
     db.session.add(gg4)
     db.session.add(gg5)
     db.session.commit()
-    
-    
-    
-    
-    
-    # gg = User.find_by_email("kbx@gmail.com")
-    # gg = User.query.filter_by(emailleonweecs@gmail.com_address="leonweecs@gmail.com").first()
-
-    # print(gg.name)
+    from models.model import TaskModel
+    gg = TaskModel(
+        name="Mission1",
+        description="GGWP",
+        location="CoSpace Park",
+        point=25,
+        status=0,
+        user_id=1
+    )
+    gg2 = TaskModel(
+        name="Mission2",
+        description="GGWP",
+        location="CoSpace Park",
+        point=25,
+        status=2,
+        user_id=2
+    )
+    db.session.add(gg)
+    db.session.add(gg2)
+    db.session.commit()
 

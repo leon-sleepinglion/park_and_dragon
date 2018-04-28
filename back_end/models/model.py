@@ -18,7 +18,7 @@ class RevokedTokenModel(db.Model):
         query = cls.query.filter_by(jti=jti).first()
         return bool(query)
 
-class TaskModel(db.model):
+class TaskModel(db.Model):
     __tablename__ = 'task'
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(256))
@@ -26,17 +26,18 @@ class TaskModel(db.model):
     location = db.Column(db.String(512))
     point = db.Column(db.Integer)
     created_on = db.Column(db.String(128), default=db.func.now())
+    status = db.Column(db.Integer)
+    user_id = db.Column(db.Integer, db.ForeignKey("user.id"))
 
     @classmethod
-    def get_all(cls):
-        return cls.query.all()
+    def get_by_user_id(cls, user_id):
+        return cls.query.filter_by(user_id=user_id).all()
 
-class TaskAssignmentModel(db.model):
-    __tablename__ = 'task_assignment'
-    id = db.Column(db.Integer, primary_key=True)
-    task_id = db.Column(db.Integer, db.ForeignKey("task.id"))
-    user_id = db.Column(db.Integer, db.ForeignKey("user.id"))
-    status = db.Column(db.Integer)
+# class TaskAssignmentModel(db.Model):
+#     __tablename__ = 'task_assignment'
+#     id = db.Column(db.Integer, primary_key=True)
+#     task_id = db.Column(db.Integer, db.ForeignKey("task.id"))
+
 
 class User(db.Model):
     __tablename__ = 'user'
