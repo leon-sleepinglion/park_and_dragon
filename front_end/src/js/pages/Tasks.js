@@ -55,25 +55,23 @@ export default class Tasks extends Component {
         <Content style={ { margin: '24px 24px 0', height: '100%' } }>
           <Fragment>
             <Row gutter={ 24 }>
-              { missions.map((card, cardIndex) => {
-                return (
-                  <Col key={ `col${cardIndex}` } { ...topColResponsiveProps }>
-                    <TaskCard
-                      bordered={ false }
-                      missionLocation={ card.content.missionLocation }
-                      missionPoint={ card.content.missionPoint }
-                      missionName={ card.content.missionName }
-                      footer={ <Field label="Status:"
-                                      labelStyle={ { marginRight: 10 } }
-                                      value={ fieldValue[card.content.missionStatus] }
-                                      valueStyle={ { color: fieldValueStyle[card.content.missionStatus] } }/> }
-                      key={ `col${cardIndex}task${cardIndex}` }
-                    >
-                      <Field value={ card.content.missionDescription } style={ { overflow: 'display' } }/>
-                    </TaskCard>
-                  </Col>
-                )
-              }) }
+              { missions.map((card, cardIndex) =>
+                <Col key={ `col${cardIndex}` } { ...topColResponsiveProps }>
+                  <TaskCard
+                    bordered={ false }
+                    missionLocation={ card.content.missionLocation }
+                    missionPoint={ card.content.missionPoint }
+                    missionName={ card.content.missionName }
+                    footer={ <Field label="Status:"
+                                    labelStyle={ { marginRight: 10 } }
+                                    value={ fieldValue[card.content.missionStatus] }
+                                    valueStyle={ { color: fieldValueStyle[card.content.missionStatus] } }/> }
+                    key={ `col${cardIndex}task${cardIndex}` }
+                  >
+                    <Field value={ card.content.missionDescription } style={ { overflow: 'display' } }/>
+                  </TaskCard>
+                </Col>)
+              }
             </Row>
           </Fragment>
         </Content>
