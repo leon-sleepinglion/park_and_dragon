@@ -1,0 +1,32 @@
+{
+  "title": "Registration",
+  "color": "rgba(0,0,0,0.25)",
+  "informations": [
+    {
+      "label": "Username",
+      "stateName": "username",
+      "icon": "user"
+    },
+    {
+      "label": "Password",
+      "stateName": "password",
+      "icon": "lock",
+      "props": {
+        "type": "password"
+      }
+    },
+    {
+      "label": "Confirm password",
+      "stateName": "confirmPassword",
+      "icon": "lock",
+      "props": {
+        "type": "password"
+      }
+    },
+    {
+      "label": "Email address",
+      "stateName": "emailAddress",
+      "icon": "red-envelope"
+    }
+  ]
+}
