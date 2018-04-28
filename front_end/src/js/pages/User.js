@@ -1,6 +1,9 @@
 import React, { Component, Fragment } from 'react'
 import { Col, Row, Icon, Card } from 'antd'
 import UserProfileHeader from '../layouts/UserProfileHeader'
+import { Description, DescriptionList, StepCard } from '../components/presentational'
+import characterImage from '../../assets/character1.png'
+
 import {
   Description,
   DescriptionList,
@@ -112,13 +115,11 @@ export default class User extends Component {
       <div style={{ padding: 20 }}>
         <Card bordered={false} title={`User ID: ${userId}`}>
           <UserProfileHeader
-            logoSize={'140px'}
-            logoImageSource={
-              'https://gw.alipayobjects.com/zos/rmsportal/nxkuOJlFJuAUhzlMTCEe.png'
-            }
-            action={action}
-            description={description}
-            extraContent={extraContent}
+            logoSize={ '140px' }
+            logoImageSource={ characterImage }
+            action={ action }
+            description={ description }
+            extraContent={ extraContent }
           />
         </Card>
         <StepCard
