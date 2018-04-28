@@ -1,12 +1,25 @@
-import { combineReducers } from 'redux'
+const initialState = {
+  id: '',
+  name: '',
+  email: '',
+  address: '',
+  mobile: '',
+  coins: 0,
+  gems: 0,
+  equipments: {
+    shirt: null,
+    pants: null,
+    accessory: null
+  }
+}
 
-const points = (state = 0, action) => {
+const user = (state = initialState, action) => {
   switch (action.type) {
+    case 'UPDATE_USER':
+      return action.payload
     default:
       return state
   }
 }
 
-export default combineReducers({
-  points
-})
+export default user

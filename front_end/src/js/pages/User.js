@@ -1,7 +1,11 @@
 import React, { Component, Fragment } from 'react'
-import { Button, Col, Row, Icon, Card } from 'antd'
+import { Col, Row, Icon, Card } from 'antd'
 import UserProfileHeader from '../layouts/UserProfileHeader'
-import { Description, DescriptionList, StepCard } from '../components/presentational'
+import {
+  Description,
+  DescriptionList,
+  StepCard
+} from '../components/presentational'
 
 export default class User extends Component {
   state = {}
@@ -28,13 +32,13 @@ export default class User extends Component {
 
     const extraContent = (
       <Row>
-        <Col xs={ 24 } sm={ 12 }>
-          <div style={ textSecondaryStyle }>Status</div>
-          <div style={ headerStyle }>{ status }</div>
+        <Col xs={24} sm={12}>
+          <div style={textSecondaryStyle}>Status</div>
+          <div style={headerStyle}>{status}</div>
         </Col>
-        <Col xs={ 24 } sm={ 12 }>
-          <div style={ textSecondaryStyle }>Item Owned</div>
-          <div style={ headerStyle }>{ itemOwned }</div>
+        <Col xs={24} sm={12}>
+          <div style={textSecondaryStyle}>Item Owned</div>
+          <div style={headerStyle}>{itemOwned}</div>
         </Col>
       </Row>
     )
@@ -45,10 +49,16 @@ export default class User extends Component {
     }
 
     const description = (
-      <DescriptionList gutter={ 24 }>
-        <Description title="Username" titleStyle={ titleStyle } span={ 12 }>{ username }</Description>
-        <Description title="Level" titleStyle={ titleStyle } span={ 12 }>{ level }</Description>
-        <Description title="Joined since" titleStyle={ titleStyle } span={ 12 }>{ joinedSince }</Description>
+      <DescriptionList gutter={24}>
+        <Description title="Username" titleStyle={titleStyle} span={12}>
+          {username}
+        </Description>
+        <Description title="Level" titleStyle={titleStyle} span={12}>
+          {level}
+        </Description>
+        <Description title="Joined since" titleStyle={titleStyle} span={12}>
+          {joinedSince}
+        </Description>
       </DescriptionList>
     )
 
@@ -65,12 +75,13 @@ export default class User extends Component {
       {
         title: 'level1',
         desc: (
-          <div style={ descStyle }>
+          <div style={descStyle}>
             description
             <Fragment>
-              <Icon type="dingding-o" style={ { marginLeft: 8 } }/>
+              <Icon type="dingding-o" style={{ marginLeft: 8 }} />
             </Fragment>
-            <div style={ { marginTop: '8px', marginBottom: '4px' } }>2016-12-12 12:32
+            <div style={{ marginTop: '8px', marginBottom: '4px' }}>
+              2016-12-12 12:32
             </div>
           </div>
         )
@@ -78,12 +89,13 @@ export default class User extends Component {
       {
         title: 'level2',
         desc: (
-          <div style={ descStyle }>
+          <div style={descStyle}>
             description
             <Fragment>
-              <Icon type="dingding-o" style={ { marginLeft: 8 } }/>
+              <Icon type="dingding-o" style={{ marginLeft: 8 }} />
             </Fragment>
-            <div style={ { marginTop: '8px', marginBottom: '4px' } }>2016-12-12 12:32
+            <div style={{ marginTop: '8px', marginBottom: '4px' }}>
+              2016-12-12 12:32
             </div>
           </div>
         )
@@ -97,38 +109,53 @@ export default class User extends Component {
     ]
 
     return (
-      <div style={ { padding: 20 } }>
-        <Card bordered={ false }
-              title={ `User ID: ${userId}` }>
+      <div style={{ padding: 20 }}>
+        <Card bordered={false} title={`User ID: ${userId}`}>
           <UserProfileHeader
-            logoSize={ '140px' }
-            logoImageSource={ "https://gw.alipayobjects.com/zos/rmsportal/nxkuOJlFJuAUhzlMTCEe.png" }
-            action={ action }
-            description={ description }
-            extraContent={ extraContent }
+            logoSize={'140px'}
+            logoImageSource={
+              'https://gw.alipayobjects.com/zos/rmsportal/nxkuOJlFJuAUhzlMTCEe.png'
+            }
+            action={action}
+            description={description}
+            extraContent={extraContent}
           />
         </Card>
-        <StepCard title="Levels"
-                  currentStep={ 1 }
-                  currentPopoverContentTitle="Title"
-                  currentPopoverContentStatus="Status"
-                  currentPopoverContentValue="240 exp"
-                  contents={ contents }
-                  style={ { marginTop: 24, marginBottom: 24} }
-                  bordered={ false }/>
+        <StepCard
+          title="Levels"
+          currentStep={1}
+          currentPopoverContentTitle="Title"
+          currentPopoverContentStatus="Status"
+          currentPopoverContentValue="240 exp"
+          contents={contents}
+          style={{ marginTop: 24, marginBottom: 24 }}
+          bordered={false}
+        />
         <Card title="User profile">
-          <DescriptionList gutter={ 24 }>
-            <Description title="Username" titleStyle={ titleStyle } span={ 8 }>{ username }</Description>
-            <Description title="Level" titleStyle={ titleStyle } span={ 8 }>{ level }</Description>
-            <Description title="Joined since" titleStyle={ titleStyle } span={ 8 }>{ joinedSince }</Description>
+          <DescriptionList gutter={24}>
+            <Description title="Username" titleStyle={titleStyle} span={8}>
+              {username}
+            </Description>
+            <Description title="Level" titleStyle={titleStyle} span={8}>
+              {level}
+            </Description>
+            <Description title="Joined since" titleStyle={titleStyle} span={8}>
+              {joinedSince}
+            </Description>
           </DescriptionList>
-          <DescriptionList gutter={ 24 } style={{marginTop: '12px'}}>
-            <Description title="Username" titleStyle={ titleStyle } span={ 8 }>{ username }</Description>
-            <Description title="Level" titleStyle={ titleStyle } span={ 8 }>{ level }</Description>
-            <Description title="Joined since" titleStyle={ titleStyle } span={ 8 }>{ joinedSince }</Description>
+          <DescriptionList gutter={24} style={{ marginTop: '12px' }}>
+            <Description title="Username" titleStyle={titleStyle} span={8}>
+              {username}
+            </Description>
+            <Description title="Level" titleStyle={titleStyle} span={8}>
+              {level}
+            </Description>
+            <Description title="Joined since" titleStyle={titleStyle} span={8}>
+              {joinedSince}
+            </Description>
           </DescriptionList>
         </Card>
       </div>
-    );
+    )
   }
 }

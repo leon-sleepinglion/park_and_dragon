@@ -23,16 +23,6 @@
         "description": "Shop"
       },
       {
-        "key": "clan",
-        "icon": "global",
-        "description": "Clan"
-      },
-      {
-        "key": "feedback",
-        "icon": "exception",
-        "description": "Feedback"
-      },
-      {
         "key": "user",
         "icon": "user",
         "description": "User"

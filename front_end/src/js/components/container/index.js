@@ -1,4 +1,3 @@
-export { default as withClanAction } from './withClanAction'
 export { default as withInventoryAction } from './withInventoryAction'
 export { default as withShopAction } from './withShopAction'
 export { default as withTaskAction } from './withTaskAction'
