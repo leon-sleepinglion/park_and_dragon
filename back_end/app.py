@@ -36,5 +36,9 @@ api.add_resource(Authentication.DemoProtectedRoute, '/protected')
 import resources.Task as Task
 api.add_resource(Task.AllTasksResource, '/alltasks')
 
+import resources.VerificationCode as VCode
+api.add_resource(VCode.GenerateCode, '/generatecode')
+api.add_resource(VCode.ApplyCode, '/applycode')
+
 if __name__ == '__main__':
     app.run(debug=True)
