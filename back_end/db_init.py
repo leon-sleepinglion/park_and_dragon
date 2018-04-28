@@ -9,8 +9,9 @@ app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 with app.app_context():
     from models.model import User
     db.init_app(app)
+    db.drop_all()
     db.create_all()
-    gg = User(name="leon", email_address="leonweecs@gmail.com", password_hash="52345khk", user_level=2, phone_number="+60125685478", has_telegram=True)
+    gg = User(name="leon", email_address="leonweecs@gmail.com", password_hash="$pbkdf2-sha256$29000$u3cO4TwnROjdmzPm/N9biw$8OZEj/4izb9Zt7REh9TMlm35WQtwPFRHDVFM.VhQjl0", user_level=2, phone_number="60104315105", has_telegram=True)
     db.session.add(gg)
     db.session.commit()
     gg2 = User(name="baoxuan", email_address="baoxuan9616@gmail.com", password_hash="alsjdkh9876", user_level=2, phone_number="+60169157190", has_telegram=True)

@@ -1,3 +1,5 @@
+import requests, json
+from requests.auth import HTTPBasicAuth
 from passlib.hash import pbkdf2_sha256
 
 
@@ -7,3 +9,32 @@ def hash_password(password):
 
 def verify_password(password, hash):
     return pbkdf2_sha256.verify(password, hash)
+
+def twizo_request(recipient):
+	url = "https://api-asia-01.twizo.com/v1/verification/submit"
+
+	headers = {
+		"Accept": "application/json",
+		"Content-Type": "application/json; charset=utf8"
+	}
+
+	data = {
+		"recipient" : recipient,
+		"type": "telegram",
+		"issuer": "Helper"
+	}
+
+	r = requests.post(url, data=json.dumps(data), headers=headers, auth=HTTPBasicAuth('twizo', 'l0DczJDRfdcjUBFw9Nc6K2BXBk4pT9Fpt59BaOIfankw27-N'))
+	# print(json.loads(r.text)['messageId'])
+	return json.loads(r.text)['messageId']
+
+def twizo_verify(messageId):
+	url = "https://api-asia-01.twizo.com/verification/submit/" + messageId
+	headers = {
+		"Accept": "application/json",
+		"Content-Type": "application/json; charset=utf8"
+	}
+
+	r = requests.get(url, headers=headers, auth=HTTPBasicAuth('twizo', 'l0DczJDRfdcjUBFw9Nc6K2BXBk4pT9Fpt59BaOIfankw27-N'))
+	# print(json.loads(r.text)['statusCode'])
+	return json.loads(r.text)['statusCode']
