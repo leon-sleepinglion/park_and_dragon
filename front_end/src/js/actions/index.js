@@ -1,0 +1,6 @@
+import { default as ClanAction } from './ClanAction'
+import { default as FeedbackAction } from './FeedbackAction'
+import { default as InventoryAction } from './InventoryAction'
+import { default as ShopAction } from './ShopAction'
+import { default as TasksAction } from './TasksAction'
+import { default as UserAction } from './UserAction'

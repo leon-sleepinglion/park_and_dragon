@@ -33,11 +33,29 @@ class TaskModel(db.Model):
     def get_by_user_id(cls, user_id):
         return cls.query.filter_by(user_id=user_id).all()
 
-# class TaskAssignmentModel(db.Model):
-#     __tablename__ = 'task_assignment'
-#     id = db.Column(db.Integer, primary_key=True)
-#     task_id = db.Column(db.Integer, db.ForeignKey("task.id"))
 
+class VerificationCodeModel(db.Model):
+    __tablename__ = 'code_assignment'
+    id = db.Column(db.Integer, primary_key=True)
+    generated_code = db.Column(db.String(128))
+    is_used = db.Column(db.Boolean, default=False)
+
+    def save(self):
+        db.session.add(self)
+        db.session.commit()
+    
+    @classmethod
+    def match_code(cls, code):
+        return cls.query.filter_by(generated_code=code).first()
+
+    @classmethod
+    # Find the record and update the is_used property.
+    def find_code(cls, code):
+        return cls.query.filter_by(generated_code = code).first()
+    
+    @classmethod
+    def commit(cls):
+        return db.session.commit()
 
 class User(db.Model):
     __tablename__ = 'user'
