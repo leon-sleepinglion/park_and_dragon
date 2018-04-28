@@ -1,10 +1,7 @@
 import React, { Fragment } from 'react'
-import ItemCard from "../components/presentational/ItemCard"
-import {
-  Layout,
-  Row,
-  Col
-} from 'antd'
+import ItemCard from '../components/presentational/ItemCard'
+import { Layout, Row, Col } from 'antd'
+import { withInventoryAction } from '../components/container'
 
 const { Content } = Layout
 
@@ -17,39 +14,25 @@ const topColResponsiveProps = {
   style: { marginBottom: 24 }
 }
 
-export default class Inventory extends React.Component {
+class Inventory extends React.Component {
   render() {
-    // const { items } = this.props
-    const item = {
-      src: 'https://os.alipayobjects.com/rmsportal/QBnOOoLaAfKPirc.png',
-      title: 'Europe Street beat',
-      description: 'www.instagram.com'
-    }
-
-    const items = [
-      item,
-      item,
-      item,
-      item,
-      item,
-      item,
-      item,
-      item
-    ]
+    const items = this.props.inventory
 
     return (
       <Layout>
-        <Content style={ { margin: '24px 24px 0', height: '100%' } }>
+        <Content style={{ margin: '24px 24px 0', height: '100%' }}>
           <Fragment>
-            <Row gutter={ 24 }>
-              { items.map((item, itemIndex) => (
-                <Col key={ `col${itemIndex}` } { ...topColResponsiveProps }>
-                  <ItemCard coverImageSource={ item.src }
-                            metaTitle={ item.title }
-                            metaDescription={ item.description }
-                            style={ { width: 240 } }/>
+            <Row gutter={24}>
+              {items.map((item, itemIndex) => (
+                <Col key={`col${itemIndex}`} {...topColResponsiveProps}>
+                  <ItemCard
+                    coverImageSource={item.src}
+                    metaTitle={item.title}
+                    metaDescription={item.description}
+                    style={{ width: 240 }}
+                  />
                 </Col>
-              )) }
+              ))}
             </Row>
           </Fragment>
         </Content>
@@ -57,3 +40,5 @@ export default class Inventory extends React.Component {
     )
   }
 }
+
+export default withInventoryAction(Inventory)

@@ -7,7 +7,7 @@ import {
 } from '../../helpers/UserHelper'
 
 const mapStateToProps = state => {
-  return state.user
+  return { ...state.user, itemOwned: state.inventory.length }
 }
 
 const mapDispatchToProps = (dispatch, ownProps) => {

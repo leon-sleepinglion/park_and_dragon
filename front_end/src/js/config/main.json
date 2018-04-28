@@ -26,6 +26,11 @@
         "key": "user",
         "icon": "user",
         "description": "User"
+      },
+      {
+        "key": "canvas",
+        "icon": "user",
+        "description": "Canvas"
       }
     ],
     "style": {
