@@ -12,7 +12,7 @@ class Item(Resource):
         user_id = request.args.get('user')
 
         try:
-            sql = "SELECT item.id, item.name, item.description, item.coins, item.gems, item.types FROM item JOIN user_item ON user_item.item_id = item.id WHERE user_item.user_id = " + user_id
+            sql = "SELECT item.id, item.name, item.description, item.coins, item.gems, item.types, item.image_url FROM item JOIN user_item ON user_item.item_id = item.id WHERE user_item.user_id = " + user_id
         
             result = db.engine.execute(sql)
 
@@ -21,7 +21,7 @@ class Item(Resource):
                 "id":x["id"], 
                 "description":x["description"], 
                 "coins": x["coins"], 
-                "gems":x["gems"], "types":x["types"]} for x in result]
+                "gems":x["gems"], "types":x["types"], "image_url":x["image_url"]} for x in result]
         
             if(items.__len__ == 0):
                 return {'message': '0 item own by user.', 'item':items}, 200
@@ -53,7 +53,7 @@ class ShopItem(Resource):
         user_id = request.args.get('user')
 
         try:
-            sql = "SELECT item.id, item.name, item.description, item.coins, item.gems, item.types FROM item JOIN user_item ON user_item.item_id != item.id WHERE user_item.user_id = " + user_id
+            sql = "SELECT item.id, item.name, item.description, item.coins, item.gems, item.types, item.image_url FROM item JOIN user_item ON user_item.item_id != item.id WHERE user_item.user_id = " + user_id
         
             result = db.engine.execute(sql)
 
@@ -62,8 +62,9 @@ class ShopItem(Resource):
             "id":x["id"], 
             "description":x["description"], 
             "coins": x["coins"], 
-            "gems":x["gems"], "types":x["types"]} for x in result]
-        
+            "gems":x["gems"], 
+            "types":x["types"], 
+            "image_url":x["image_url"]} for x in result]
             if(items.__len__ == 0):
                 return {'message': 'Shop has 0 item', 'item':items}, 200
             else:
