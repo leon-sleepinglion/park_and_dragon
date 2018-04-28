@@ -66,6 +66,7 @@ class User(db.Model):
     user_level = db.Column(db.Integer)
     phone_number = db.Column(db.String(256))
     has_telegram = db.Column(db.Boolean)
+    point = db.Column(db.Integer)
     created_on = db.Column(db.String(512), default=db.func.now())
     last_updated = db.Column(db.String(512), default=db.func.now(), onupdate=db.func.now())
     is_deleted = db.Column(db.Boolean, default=False)

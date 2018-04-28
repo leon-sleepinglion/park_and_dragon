@@ -1,11 +1,14 @@
 import { connect } from 'react-redux'
-import { updateShopItems } from '../../actions/TasksAction'
-import { getShopItems, buyShopItems } from '../../helpers/TasksHelper'
+import { updateShopItems } from '../../actions/ShopAction'
+import { getShopItems, buyShopItems } from '../../helpers/ShopHelper'
 
 const mapStateToProps = state => {
   return {
     items: state.shop.items,
-    vouchers: state.shop.items
+    vouchers: state.shop.vouchers,
+    coins: state.user.coins,
+    gems: state.user.gems,
+    inventoryCount: state.inventory.length
   }
 }
 

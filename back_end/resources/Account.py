@@ -1,7 +1,8 @@
 import traceback, json
 from flask import request
 from flask_restful import Resource, reqparse
-
+from flask_jwt_extended import (create_access_token, create_refresh_token, jwt_required, jwt_refresh_token_required,
+                                get_jwt_identity, get_raw_jwt)
 from common.util import hash_password
 from models.model import User as User_Model
 
@@ -16,7 +17,7 @@ from models.model import User as User_Model
 #     "has_telegram": true
 # }
 class User(Resource):
-
+    @jwt_required
     def post(self):
         parser = reqparse.RequestParser()
         parser.add_argument('name')
@@ -43,7 +44,8 @@ class User(Resource):
         except:
             print(traceback.format_exc())
             return {'message': 'An error occurred. Check console for error message.'}, 400
-    
+
+    @jwt_required
     def put(self):
         parser = reqparse.RequestParser()
         parser.add_argument('name')
@@ -77,6 +79,7 @@ class User(Resource):
             print(traceback.format_exc())
             return {'message': 'An error occurred. Check console for error message.'}, 400
 
+    @jwt_required
     def get(self):
         email = request.args.get('email')
         print(email)
