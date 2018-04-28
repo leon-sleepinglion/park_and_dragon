@@ -93,6 +93,7 @@ class ItemModel(db.Model):
     coins = db.Column(db.Integer)
     gems = db.Column(db.Integer)
     types = db.Column(db.String(256))
+    image_url = db.Column(db.String(512))
     created_on = db.Column(db.String(128), default=db.func.now())
     
     def save_item(self):
@@ -112,6 +113,10 @@ class UserItemModel(db.Model):
     @classmethod
     def item_own_by_user(cls, user_id):
         return cls.query.filter_by(user_id=user_id)
+
+    def save(self):
+        db.session.add(self)
+        db.session.commit()
     
     
     

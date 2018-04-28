@@ -42,7 +42,8 @@ api.add_resource(VCode.GenerateCode, '/generatecode')
 api.add_resource(VCode.ApplyCode, '/applycode')
 
 import resources.Item as Item
-api.add_resource(Item.Item, '/getshopitem')
+api.add_resource(Item.Item, '/getinventory')
+api.add_resource(Item.ShopItem, '/getshopitem')
 
 if __name__ == '__main__':
     app.run(debug=True)

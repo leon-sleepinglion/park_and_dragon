@@ -78,9 +78,10 @@ with app.app_context():
     # db.session.add(gg7)
 
     from models.model import ItemModel
-    item1 = ItemModel(name="sword", description="It is a sword, what do you expect?",coins=10, gems=2, types="sohai")
-    item2 = ItemModel(name="shield", description="It is a shield, what do you expect?",coins=20, gems=2, types="sohai")
-    item3 = ItemModel(name="Thanos' glove", description="It collects stone automatically.",coins=1000, gems=20, types="sohai")
+    item2 = ItemModel(name="shield", description="It is a shield, what do you expect?",coins=20, gems=2, types="sohai", image_url="https://www.google.com/search?rlz=1C1CHBF_enMY790MY790&biw=1517&bih=746&tbm=isch&sa=1&ei=f-fkWq6bHof_vATTx6NY&q=sword+cartoon&oq=sword+cartoon&gs_l=psy-ab.3..0l10.118412.127190.0.127436.13.9.0.4.4.0.50.360.9.9.0....0...1c.1.64.psy-ab..0.13.380...0i67k1.0.0JlzkRh8iWc#imgrc=nf0gn8_cPmdN2M:")
+    item1 = ItemModel(name="sword", description="It is a sword, what do you expect?",coins=10, gems=2, types="superpower", image_url="")
+    item2 = ItemModel(name="shield", description="It is a shield, what do you expect?",coins=20, gems=2, types="superpower", image_url="https://www.google.com/search?q=shield+cartoon&rlz=1C1CHBF_enMY790MY790&tbm=isch&source=iu&ictx=1&fir=FbjHUvUtO28dqM%253A%252CsTAw1_mIOpBD_M%252C_&usg=__Ni7yAYvsRK9has9qcsALaha-g1g%3D&sa=X&ved=0ahUKEwiru47j9d3aAhVMKo8KHXLqBSkQ9QEIKjAA#imgrc=VsyBDgll-combM:")
+    item3 = ItemModel(name="Thanos' glove", description="It collects stone automatically.",coins=1000, gems=20, types="superpower", image_url="https://www.google.com/search?q=thanos+glove&rlz=1C1CHBF_enMY790MY790&source=lnms&tbm=isch&sa=X&ved=0ahUKEwiBnJnp9N3aAhUBo48KHStEDQ4Q_AUICigB&biw=1517&bih=746#imgrc=zg-p1rXN6kc5UM:")
     item1.save_item()
     item2.save_item()
     item3.save_item()
@@ -95,7 +96,5 @@ with app.app_context():
     db.session.add(useritem2)
 
     db.session.commit()
-
-    print(type(db.session.query(UserItemModel, ItemModel).filter(UserItemModel.item_id == ItemModel.id).filter(UserItemModel.user_id == 1).all()))
 
 
