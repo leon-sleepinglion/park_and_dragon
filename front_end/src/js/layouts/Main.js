@@ -2,7 +2,7 @@ import React from 'react'
 import ReactDOM from 'react-dom'
 import { withRouter } from 'react-router'
 import { Link } from 'react-router-dom'
-import { Layout, Menu, Icon } from 'antd'
+import { Layout, Menu, Icon, Button } from 'antd'
 import withMainAction from '../components/container/withMainAction'
 
 const { Header, Content, Footer, Sider } = Layout

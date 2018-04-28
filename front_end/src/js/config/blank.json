@@ -1,7 +1,12 @@
 {
   "header": {
     "content": "Helper.ai",
-    "style": { "background": "#fff", "padding": 0, "paddingLeft": 16 }
+    "style": {
+      "background": "#fff",
+      "padding": 0,
+      "paddingLeft": 16,
+      "fontFamily": "Berkshire Swash, cursive"
+    }
   },
   "footer": {
     "content": "Ant Design ©2016 Created by Ant UED",

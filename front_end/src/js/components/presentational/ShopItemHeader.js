@@ -18,7 +18,8 @@ const headerInfoPStyle = {
   color: 'rgba(0,0,0,0.85)',
   fontSize: '24px',
   lineHeight: '32px',
-  margin: '0'
+  margin: '0',
+  fontFamily: 'Berkshire Swash, cursive'
 }
 
 const headerInfoEmStyle = {
@@ -31,33 +32,32 @@ const headerInfoEmStyle = {
 }
 
 const ShopItemHeader = ({
-                          leftValue,
-                          leftTitle,
-                          midValue,
-                          midTitle,
-                          rightValue,
-                          rightTitle
-                        }) => {
-
+  leftValue,
+  leftTitle,
+  midValue,
+  midTitle,
+  rightValue,
+  rightTitle
+}) => {
   const Info = ({ title, value, bordered }) => (
-    <div style={ headerInfoStyle }>
-      <span style={ headerInfoSpanStyle }>{ title }</span>
-      <p style={ headerInfoPStyle }>{ value }</p>
-      { bordered && <em style={ headerInfoEmStyle }/> }
+    <div style={headerInfoStyle}>
+      <span style={headerInfoSpanStyle}>{title}</span>
+      <p style={headerInfoPStyle}>{value}</p>
+      {bordered && <em style={headerInfoEmStyle} />}
     </div>
   )
 
   return (
-    <Card bordered={ false }>
+    <Card bordered={false}>
       <Row>
-        <Col sm={ 8 } xs={ 24 }>
-          <Info title={ leftTitle } value={ leftValue } bordered/>
+        <Col sm={8} xs={24}>
+          <Info title={leftTitle} value={leftValue} bordered />
         </Col>
-        <Col sm={ 8 } xs={ 24 }>
-          <Info title={ midTitle } value={ midValue } bordered/>
+        <Col sm={8} xs={24}>
+          <Info title={midTitle} value={midValue} bordered />
         </Col>
-        <Col sm={ 8 } xs={ 24 }>
-          <Info title={ rightTitle } value={ rightValue }/>
+        <Col sm={8} xs={24}>
+          <Info title={rightTitle} value={rightValue} />
         </Col>
       </Row>
     </Card>

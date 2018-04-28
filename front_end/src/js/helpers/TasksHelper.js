@@ -1,9 +1,10 @@
 import axios from 'axios'
 import { GET_TASKS_URL } from '../config/url.json'
+import { getAxios } from './tokenHelper'
 
 export const getTasks = async () => {
   try {
-    const res = await axios.get(GET_TASKS_URL)
+    const res = await getAxios(GET_TASKS_URL)
     const tasks = res.data.map(task => ({
       missionId: task.id,
       missionName: task.name,

@@ -1,4 +1,5 @@
 import React from 'react'
+import {connect} from 'react-redux'
 import { Row, Col, Card, Button } from 'antd'
 import { Loop, Stage, Sprite, World, Body, TileMap } from 'react-game-kit'
 import character1 from '../../assets/character1.png'
@@ -266,7 +267,7 @@ class Obstacle extends React.Component {
   }
 }
 
-class Player extends React.Component {
+class _Player extends React.Component {
   static contextTypes = {
     loop: PropTypes.object,
   };
@@ -283,10 +284,11 @@ class Player extends React.Component {
   }
 
   render() {
+    const {character} = this.props
     return (
       <div style={ { transform: `translate(${this.props.x}px, ${this.props.y}px)` } }>
         <TileMap
-          src={ character1 }
+          src={ character }
           tileSize={ this.props.tileSize }
           columns={ 1 }
           rows={ 1 }
@@ -296,3 +298,9 @@ class Player extends React.Component {
     )
   }
 }
+
+const mapStateToProps = state => ({
+  character: state.user.pic
+})
+
+const Player = connect(mapStateToProps)(_Player)

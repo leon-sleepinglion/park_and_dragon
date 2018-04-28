@@ -15,7 +15,13 @@ class Home extends React.Component {
                 alt="profile pic"
                 style={{ width: '100%', marginLeft: -30 }}
               />
-              <h1 style={{ textAlign: 'center', margin: 0 }}>
+              <h1
+                style={{
+                  textAlign: 'center',
+                  margin: 0,
+                  fontFamily: 'Berkshire Swash, cursive'
+                }}
+              >
                 {user.username}
               </h1>
             </Card>
