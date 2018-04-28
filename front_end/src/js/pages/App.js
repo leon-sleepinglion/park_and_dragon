@@ -4,6 +4,17 @@ import { createStore, combineReducers } from 'redux'
 import { Provider } from 'react-redux'
 import reducers from '../reducers'
 
+import { Main } from '../layouts'
+import { mainConfig } from '../config'
+
+import Clan from './Clan'
+import Feedback from './Feedback'
+import Home from './Home'
+import Inventory from './Inventory'
+import Shop from './Shop'
+import Tasks from './Tasks'
+import User from './User'
+
 const store = createStore(
   combineReducers({
     ...reducers
@@ -15,18 +26,20 @@ export default class App extends Component {
     return (
       <Provider store={store}>
         <BrowserRouter>
-          <Switch>
-            <Route exact path="/" render={() => <p>a</p>} />
-            {/* <Route exact path="/login" /> */}
-            {/* <Route exact path="/register" /> */}
-            {/* <Route exact path="/tasks" /> */}
-            {/* <Route exact path="/inventory" /> */}
-            {/* <Route exact path="/shop" /> */}
-            {/* <Route exact path="/clan" /> */}
-            {/* <Route exact path="/feedback" /> */}
-            {/* <Route exact path="/user" /> */}
-            <Redirect to="/" />
-          </Switch>
+          <Main config={mainConfig}>
+            <Switch>
+              <Route exact path="/" render={() => <Home />} />
+              {/* <Route exact path="/login" /> */}
+              {/* <Route exact path="/register" /> */}
+              <Route exact path="/tasks" render={() => <Tasks />} />
+              <Route exact path="/inventory" render={() => <Inventory />} />
+              <Route exact path="/shop" render={() => <Shop />} />
+              <Route exact path="/clan" render={() => <Clan />} />
+              <Route exact path="/feedback" render={() => <Feedback />} />
+              <Route exact path="/user" render={() => <User />} />
+              <Redirect to="/" />
+            </Switch>
+          </Main>
         </BrowserRouter>
       </Provider>
     )
