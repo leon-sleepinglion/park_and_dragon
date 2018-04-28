@@ -1,0 +1,64 @@
+{
+  "sider": {
+    "theme": "dark",
+    "item": [
+      {
+        "key": "home",
+        "icon": "home",
+        "description": "Home"
+      },
+      {
+        "key": "tasks",
+        "icon": "bars",
+        "description": "Tasks"
+      },
+      {
+        "key": "inventory",
+        "icon": "appstore-o",
+        "description": "Inventory"
+      },
+      {
+        "key": "shop",
+        "icon": "shop",
+        "description": "Shop"
+      },
+      {
+        "key": "clan",
+        "icon": "global",
+        "description": "Clan"
+      },
+      {
+        "key": "feedback",
+        "icon": "exception",
+        "description": "Feedback"
+      },
+      {
+        "key": "user",
+        "icon": "user",
+        "description": "User"
+      }
+    ],
+    "style": {
+      "overflow": "auto",
+      "height": "100vh",
+      "position": "fixed",
+      "left": 0
+    }
+  },
+  "header": {
+    "content": "park n' dragons",
+    "style": { "background": "#fff", "padding": 0, "paddingLeft": 16 }
+  },
+  "footer": {
+    "content": "Ant Design ©2016 Created by Ant UED",
+    "style": { "textAlign": "center" }
+  },
+  "content": {
+    "style": {
+      "margin": "24px auto 0",
+      "overflow": "initial",
+      "width": "100%",
+      "maxWidth": 1170
+    }
+  }
+}
