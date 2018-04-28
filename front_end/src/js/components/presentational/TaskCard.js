@@ -92,7 +92,6 @@ const itemValueStyle = {}
 const TaskCard = ({
   contentHeight,
   missionLocation,
-  avatar,
   missionPoint,
   missionName,
   footer,
@@ -102,7 +101,6 @@ const TaskCard = ({
   const content = (
     <div style={chartCardStyle}>
       <div style={chartCardTopStyle}>
-        <div style={avatarStyle}>{avatar}</div>
         <div style={{ float: 'left' }}>
           <div style={metaStyle}>
             <span style={locationStyle}>{missionLocation}</span>
