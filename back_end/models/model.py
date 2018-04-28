@@ -27,6 +27,7 @@ class TaskModel(db.Model):
     created_on = db.Column(db.String(128), default=db.func.now())
     status = db.Column(db.Integer)
     user_id = db.Column(db.Integer, db.ForeignKey("user.id"))
+    count = db.Column(db.Integer)
 
     @classmethod
     def get_by_user_id(cls, user_id):
@@ -65,6 +66,7 @@ class User(db.Model):
     user_level = db.Column(db.Integer)
     phone_number = db.Column(db.String(256))
     has_telegram = db.Column(db.Boolean)
+    point = db.Column(db.Integer)
     created_on = db.Column(db.String(512), default=db.func.now())
     last_updated = db.Column(db.String(512), default=db.func.now(), onupdate=db.func.now())
     is_deleted = db.Column(db.Boolean, default=False)
@@ -99,8 +101,8 @@ class ItemModel(db.Model):
 
 class UserItemModel(db.Model):
     __tablename__ = 'user_item'
-    # id = db.Column(db.Integer, primary_key=True)
-    user_id = db.Column(db.Integer, db.ForeignKey("user.id"), primary_key=True)
+    id = db.Column(db.Integer, primary_key=True)
+    user_id = db.Column(db.Integer, db.ForeignKey("user.id"))
     item_id = db.Column(db.Integer, db.ForeignKey("item.id"))
 
     @classmethod

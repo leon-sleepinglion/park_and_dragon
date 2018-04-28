@@ -1,4 +1,5 @@
 import requests, json
+from flask import request
 from requests.auth import HTTPBasicAuth
 from passlib.hash import pbkdf2_sha256
 import string, random
