@@ -1,5 +1,5 @@
 {
-  "GET_TASKS_URL": "",
+  "GET_TASKS_URL": "http://localhost:5000/alltasks?user_id=1",
   "GET_SHOP_ITEMS_URL": "",
   "BUY_SHOP_ITEMS_URL": "",
   "UPDATE_INVENTORY": ""

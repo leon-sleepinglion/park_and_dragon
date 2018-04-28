@@ -13,5 +13,6 @@ export const getInventory = async () => {
     }))
   } catch (error) {
     console.log(error)
+    return []
   }
 }

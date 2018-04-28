@@ -38,23 +38,23 @@ class Tasks extends Component {
                 <Col key={`col${cardIndex}`} {...topColResponsiveProps}>
                   <TaskCard
                     bordered={false}
-                    missionLocation={card.content.missionLocation}
-                    missionPoint={card.content.missionPoint}
-                    missionName={card.content.missionName}
+                    missionLocation={card.missionLocation}
+                    missionPoint={card.missionPoint}
+                    missionName={card.missionName}
                     footer={
                       <Field
                         label="Status:"
                         labelStyle={{ marginRight: 10 }}
-                        value={fieldValue[card.content.missionStatus]}
+                        value={fieldValue[card.missionStatus]}
                         valueStyle={{
-                          color: fieldValueStyle[card.content.missionStatus]
+                          color: fieldValueStyle[card.missionStatus]
                         }}
                       />
                     }
                     key={`col${cardIndex}task${cardIndex}`}
                   >
                     <Field
-                      value={card.content.missionDescription}
+                      value={card.missionDescription}
                       style={{ overflow: 'display' }}
                     />
                   </TaskCard>

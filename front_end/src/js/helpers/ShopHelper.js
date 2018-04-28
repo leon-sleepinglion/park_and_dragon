@@ -16,6 +16,7 @@ export const getShopItems = async () => {
     }))
   } catch (error) {
     console.log(error)
+    return []
   }
 }
 

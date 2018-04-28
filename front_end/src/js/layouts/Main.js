@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom'
 import { withRouter } from 'react-router'
 import { Link } from 'react-router-dom'
 import { Layout, Menu, Icon } from 'antd'
+import withMainAction from '../components/container/withMainAction'
 
 const { Header, Content, Footer, Sider } = Layout
 
@@ -14,6 +15,9 @@ class Main extends React.Component {
   }
 
   componentDidMount() {
+    // this.props.updateItems()
+    // this.props.updateInventory()
+    this.props.updateTasks()
     window.addEventListener('resize', this.updateContentHeight)
     this.updateContentHeight()
   }
@@ -102,4 +106,4 @@ class Main extends React.Component {
   }
 }
 
-export default withRouter(Main)
+export default withRouter(withMainAction(Main))
