@@ -28,10 +28,6 @@ def check_if_token_in_blacklist(decrypted_token):
     jti = decrypted_token['jti']
     return RevokedTokenModel.is_jti_blacklisted(jti)
 
-import resources.Complaint as complaint
-api.add_resource(complaint.ComplaintResource, '/complaint')
-api.add_resource(complaint.Complaints,'/allcomplaint')
-
 import resources.Authentication as Authentication
 api.add_resource(Authentication.UserLogin, '/login')
 api.add_resource(Authentication.UserLogout, '/logout')
