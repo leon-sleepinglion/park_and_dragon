@@ -40,16 +40,6 @@ const chartCardTopStyle = {
   marginBottom: '12px'
 }
 
-const avatarStyle = {
-  position: 'relative',
-  top: '4px',
-  float: 'left',
-  marginRight: '20px',
-  img: {
-    borderRadius: '100%'
-  }
-}
-
 const metaStyle = {
   color: 'fade(#000, 45%)',
   fontSize: '14px',
@@ -82,6 +72,7 @@ const footerStyle = {
 }
 
 const itemStyle = {
+  width: '100%',
   display: 'inline-block',
   fontSize: '14px',
   lineHeight: '22px'

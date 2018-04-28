@@ -7,7 +7,6 @@ import reducers from '../reducers'
 import { Main } from '../layouts'
 import { mainConfig } from '../config'
 
-import Clan from './Clan'
 import Home from './Home'
 import Inventory from './Inventory'
 import Shop from './Shop'
@@ -19,25 +18,18 @@ const store = createStore(reducers)
 export default class App extends Component {
   render() {
     return (
-      <Provider store={ store }>
+      <Provider store={store}>
         <BrowserRouter>
-          <Main config={ mainConfig }>
+          <Main config={mainConfig}>
             <Switch>
-              <Route exact path="/" render={ () => <Home/> }/>
-              { /* <Route exact path="/login" /> */ }
-              { /* <Route exact path="/register" /> */ }
-              <Route exact path="/tasks" render={ () => <Tasks/> }/>
-              <Route exact path="/inventory" render={ () => <Inventory/> }/>
-              <Route exact path="/shop" render={ () => <Shop list={ [{
-                logo: '',
-                title: 'title',
-                subDescription: 'sub description',
-                owner: 'owner',
-                createdAt: 'created at'
-              }] }/> }/>
-              <Route exact path="/clan" render={ () => <Clan/> }/>
-              <Route exact path="/user" render={ () => <User/> }/>
-              <Redirect to="/"/>
+              <Route exact path="/home" render={() => <Home />} />
+              {/* <Route exact path="/login" /> */}
+              {/* <Route exact path="/register" /> */}
+              <Route exact path="/tasks" render={() => <Tasks />} />
+              <Route exact path="/inventory" render={() => <Inventory />} />
+              <Route exact path="/shop" render={() => <Shop />} />
+              <Route exact path="/user" render={() => <User />} />
+              <Redirect to="/home" />
             </Switch>
           </Main>
         </BrowserRouter>
