@@ -8,7 +8,6 @@ import { Main } from '../layouts'
 import { mainConfig } from '../config'
 
 import Clan from './Clan'
-import Feedback from './Feedback'
 import Home from './Home'
 import Inventory from './Inventory'
 import Shop from './Shop'
@@ -31,7 +30,6 @@ export default class App extends Component {
               <Route exact path="/inventory" render={() => <Inventory />} />
               <Route exact path="/shop" render={() => <Shop />} />
               <Route exact path="/clan" render={() => <Clan />} />
-              <Route exact path="/feedback" render={() => <Feedback />} />
               <Route exact path="/user" render={() => <User />} />
               <Redirect to="/" />
             </Switch>

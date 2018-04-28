@@ -1,3 +1,6 @@
 {
-  "GET_TASKS_URL": ""
+  "GET_TASKS_URL": "",
+  "GET_SHOP_ITEMS_URL": "",
+  "BUY_SHOP_ITEMS_URL": "",
+  "UPDATE_INVENTORY": ""
 }
