@@ -2,6 +2,7 @@ import React, { Component, Fragment } from 'react'
 import { Button, Col, Row, Icon, Card } from 'antd'
 import UserProfileHeader from '../layouts/UserProfileHeader'
 import { Description, DescriptionList, StepCard } from '../components/presentational'
+import characterImage from '../../assets/character1.png'
 
 export default class User extends Component {
   state = {}
@@ -102,7 +103,7 @@ export default class User extends Component {
               title={ `User ID: ${userId}` }>
           <UserProfileHeader
             logoSize={ '140px' }
-            logoImageSource={ "https://gw.alipayobjects.com/zos/rmsportal/nxkuOJlFJuAUhzlMTCEe.png" }
+            logoImageSource={ characterImage }
             action={ action }
             description={ description }
             extraContent={ extraContent }

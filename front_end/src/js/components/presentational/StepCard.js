@@ -45,7 +45,9 @@ export default ({
       <Steps direction={ 'horizontal' } progressDot={ customDot } current={ currentStep }>
         {
           contents && contents.map((item, index) => (
-            item.desc ? <Step title={ item.title } description={ item.desc }/> : <Step title={ item.title }/>
+            item.desc ?
+              <Step title={ item.title } description={ item.desc } key={ `step${index}` }/>
+              : <Step title={ item.title } key={ `step${index}` }/>
           ))
         }
       </Steps>
