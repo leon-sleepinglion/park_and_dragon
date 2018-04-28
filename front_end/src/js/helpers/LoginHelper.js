@@ -4,8 +4,7 @@ import { LOGIN_URL, TWIZO_URL, PROTECTED_URL } from '../config/url.json'
 export const loginAttempt = async (email, password) => {
   try {
     const res = await axios.post(LOGIN_URL, { email, password })
-    console.log(res)
-    return res
+    return res.data.credentials[0]
   } catch (err) {
     console.log(err)
     return false
@@ -15,11 +14,10 @@ export const loginAttempt = async (email, password) => {
 export const twizoVerification = async (key, email, loginSuccess) => {
   try {
     const res = await axios.post(TWIZO_URL, { messageId: key, email })
-    console.log(res)
-    storeJWT(res.access_token)
+    storeJWT(res.data.access_token)
     loginSuccess()
   } catch (err) {
-    setTimeout((key, email) => twizoVerification(key, email, loginSuccess), 500)
+    setTimeout(() => twizoVerification(key, email, loginSuccess), 500)
   }
 }
 
@@ -29,7 +27,9 @@ export const verifyJWT = async loginSuccess => {
   try {
     const token = localStorage.getItem('sipehSecret')
     const res = await axios.get(PROTECTED_URL, {
-      Authentication: `bearer ${token}`
+      headers: {
+        Authorization: `Bearer ${token}`
+      }
     })
     console.log(res)
     loginSuccess()
