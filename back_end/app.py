@@ -31,10 +31,18 @@ def check_if_token_in_blacklist(decrypted_token):
 import resources.Authentication as Authentication
 api.add_resource(Authentication.UserLogin, '/login')
 api.add_resource(Authentication.UserLogout, '/logout')
+api.add_resource(Authentication.TwoFactorAuth, '/twizo')
 api.add_resource(Authentication.DemoProtectedRoute, '/protected')
 
 import resources.Task as Task
 api.add_resource(Task.AllTasksResource, '/alltasks')
+
+import resources.VerificationCode as VCode
+api.add_resource(VCode.GenerateCode, '/generatecode')
+api.add_resource(VCode.ApplyCode, '/applycode')
+
+import resources.Item as Item
+api.add_resource(Item.Item, '/getshopitem')
 
 if __name__ == '__main__':
     app.run(debug=True)

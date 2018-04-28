@@ -3,7 +3,6 @@ from flask_sqlalchemy import SQLAlchemy
 
 from db import db
 
-
 class RevokedTokenModel(db.Model):
     __tablename__ = 'revoked_tokens'
     id = db.Column(db.Integer, primary_key=True)
@@ -33,11 +32,29 @@ class TaskModel(db.Model):
     def get_by_user_id(cls, user_id):
         return cls.query.filter_by(user_id=user_id).all()
 
-# class TaskAssignmentModel(db.Model):
-#     __tablename__ = 'task_assignment'
-#     id = db.Column(db.Integer, primary_key=True)
-#     task_id = db.Column(db.Integer, db.ForeignKey("task.id"))
 
+class VerificationCodeModel(db.Model):
+    __tablename__ = 'code_assignment'
+    id = db.Column(db.Integer, primary_key=True)
+    generated_code = db.Column(db.String(128))
+    is_used = db.Column(db.Boolean, default=False)
+
+    def save(self):
+        db.session.add(self)
+        db.session.commit()
+    
+    @classmethod
+    def match_code(cls, code):
+        return cls.query.filter_by(generated_code=code).first()
+
+    @classmethod
+    # Find the record and update the is_used property.
+    def find_code(cls, code):
+        return cls.query.filter_by(generated_code = code).first()
+    
+    @classmethod
+    def commit(cls):
+        return db.session.commit()
 
 class User(db.Model):
     __tablename__ = 'user'
@@ -65,3 +82,36 @@ class User(db.Model):
     @classmethod
     def find_by_email(cls, email):
         return cls.query.filter_by(email_address=email).first()
+
+class ItemModel(db.Model):
+    __tablename__ = 'item'
+    id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String(512))
+    description = db.Column(db.String(512))
+    coins = db.Column(db.Integer)
+    gems = db.Column(db.Integer)
+    types = db.Column(db.String(256))
+    created_on = db.Column(db.String(128), default=db.func.now())
+    
+    def save_item(self):
+        db.session.add(self)
+        db.session.commit()
+
+class UserItemModel(db.Model):
+    __tablename__ = 'user_item'
+    # id = db.Column(db.Integer, primary_key=True)
+    user_id = db.Column(db.Integer, db.ForeignKey("user.id"), primary_key=True)
+    item_id = db.Column(db.Integer, db.ForeignKey("item.id"))
+
+    @classmethod
+    def item_not_own_by_user(cls, user):
+        return cls.query.filter_by(user_id=user).all()
+
+    @classmethod
+    def item_own_by_user(cls, user_id):
+        return cls.query.filter_by(user_id=user_id)
+    
+    
+    
+
+

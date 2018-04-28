@@ -29,7 +29,6 @@ class User(Resource):
 
         try:
             # Check whether user already register.
-            print(args['email'])
             existing_user = User_Model.find_by_email(args['email'])
             if existing_user:
                 return {'message': 'User with the email address: {} has registered before.'.format(existing_user.email_address)}, 400
