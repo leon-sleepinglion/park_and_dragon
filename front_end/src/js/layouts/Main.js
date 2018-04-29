@@ -55,7 +55,9 @@ class Main extends React.Component {
   }
 
   logOut = () => {
-    postAxios('http://localhost:5000/logout').then(this.props.logout)
+    postAxios('http://localhost:5000/logout')
+      .then(this.props.logout)
+      .catch(this.props.logout)
   }
 
   render() {

@@ -4,7 +4,7 @@ import { updateInventory } from '../../actions/InventoryAction'
 import { getInventory } from '../../helpers/InventoryHelper'
 import { getShopItems, buyShopItems } from '../../helpers/ShopHelper'
 import { updateUser } from '../../actions/UserAction'
-import { getuser, getUser } from '../../helpers/UserHelper'
+import { getUser } from '../../helpers/UserHelper'
 
 const mapStateToProps = state => {
   return {

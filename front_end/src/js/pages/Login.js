@@ -26,7 +26,7 @@ class Login extends React.Component {
   }
 
   componentDidMount() {
-    this.props.verifyJWT(() => this.props.loginSuccess(this.state.emailAddress))
+    this.props.verifyJWT(() => this.props.loginSuccess(this.props.email))
   }
 
   validateFormData() {
@@ -70,25 +70,31 @@ class Login extends React.Component {
             </Row>
             <Row>
               {this.state.twizoWait ? (
-                <div>
-                  <Input
-                    value={this.state.code}
-                    onChange={e => this.setState({ code: e.target.value })}
-                  />
+                <Form className="login-form">
+                  <FormItem label="Verification Token">
+                    <Input
+                      placeholder="Enter your verification token here"
+                      value={this.state.code}
+                      onChange={e => this.setState({ code: e.target.value })}
+                    />
+                  </FormItem>
                   <Button
                     onClick={() =>
                       this.props.twizoVerification(
-                        this.state.key,
-                        this.state.email,
+                        this.state.messageId,
+                        this.state.emailAddress,
                         this.state.code,
                         () => this.props.loginSuccess(this.state.emailAddress),
                         this.loginFail
                       )
                     }
+                    type="primary"
+                    className="login-form-button"
+                    style={{ width: '100%' }}
                   >
                     OK
                   </Button>
-                </div>
+                </Form>
               ) : (
                 <Form className="login-form">
                   {config &&

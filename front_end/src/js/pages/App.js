@@ -35,7 +35,11 @@ export default class App extends Component {
       <Provider store={store}>
         <BrowserRouter>
           {login ? (
-            <Main config={mainConfig} email={this.state.email}>
+            <Main
+              config={mainConfig}
+              email={this.state.email}
+              logout={this.logout}
+            >
               <Switch>
                 <Route exact path="/home" render={() => <Home />} />
                 <Route exact path="/canvas" render={() => <Canvas />} />
@@ -54,6 +58,7 @@ export default class App extends Component {
                   path="/login"
                   render={() => (
                     <Login
+                      email={this.state.email}
                       loginSuccess={this.loginSuccess}
                       config={loginConfig}
                     />
