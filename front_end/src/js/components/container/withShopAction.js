@@ -1,5 +1,7 @@
 import { connect } from 'react-redux'
 import { updateShopItems } from '../../actions/ShopAction'
+import { updateInventory } from '../../actions/InventoryAction'
+import { getInventory } from '../../helpers/InventoryHelper'
 import { getShopItems, buyShopItems } from '../../helpers/ShopHelper'
 
 const mapStateToProps = state => {
@@ -22,6 +24,8 @@ const mapDispatchToProps = dispatch => {
     buyItem: async itemId => {
       await buyShopItems(itemId)
       const items = await getShopItems()
+      const inventory = await getInventory()
+      dispatch(updateInventory(inventory))
       dispatch(updateShopItems(items))
     }
   }

@@ -24,7 +24,7 @@ class Login extends React.Component {
   }
 
   componentDidMount() {
-    this.props.verifyJWT(this.props.loginSuccess)
+    this.props.verifyJWT(() => this.props.loginSuccess(this.state.emailAddress))
   }
 
   validateFormData() {
@@ -41,10 +41,8 @@ class Login extends React.Component {
     console.log(key)
     key
       ? this.setState({ twizoWait: true }, () =>
-          this.props.twizoVerification(
-            key,
-            emailAddress,
-            this.props.loginSuccess
+          this.props.twizoVerification(key, emailAddress, () =>
+            this.props.loginSuccess(emailAddress)
           )
         )
       : window.location.reload()

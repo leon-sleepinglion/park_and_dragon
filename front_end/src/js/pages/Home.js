@@ -7,7 +7,7 @@ class Home extends React.Component {
     const { user, tasks, shop } = this.props
     return (
       <div>
-        <Row gutter="24">
+        <Row gutter={24}>
           <Col span="8">
             <Card>
               <img
@@ -29,8 +29,8 @@ class Home extends React.Component {
           <Col span="8">
             <Card title="Task" bordered={false}>
               {tasks.length ? (
-                tasks.map(({ missionName, id }) => (
-                  <p key={missionName}>{missionName}</p>
+                tasks.map(({ missionName, id }, index) => (
+                  <p key={index}>{missionName}</p>
                 ))
               ) : (
                 <p>No task.</p>
@@ -40,14 +40,16 @@ class Home extends React.Component {
           <Col span="8">
             <Card title="Shop" bordered={false}>
               {shop.items.length ? (
-                shop.items.map(({ title, id }) => <p key={title}>{title}</p>)
+                shop.items.map(({ title, id }, index) => (
+                  <p key={index}>{title}</p>
+                ))
               ) : (
                 <p>No item on sale.</p>
               )}
             </Card>
           </Col>
         </Row>
-        <Row style={{ marginTop: 24 }} gutter="24">
+        <Row style={{ marginTop: 24 }} gutter={24}>
           <Col>
             <Card
               style={{

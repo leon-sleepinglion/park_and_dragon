@@ -22,7 +22,10 @@ export const getShopItems = async () => {
 
 export const buyShopItems = async itemId => {
   try {
-    const res = await postAxios(BUY_SHOP_ITEMS_URL, { id: itemId, user_id: 1 })
+    const res = await postAxios(BUY_SHOP_ITEMS_URL, {
+      item_id: itemId,
+      user_id: 1
+    })
     console.log(res)
     return res
   } catch (err) {

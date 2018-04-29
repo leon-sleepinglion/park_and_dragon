@@ -1,7 +1,10 @@
 import React, { Component, Fragment } from 'react'
-import { Col, Layout, Row } from 'antd'
+import { Col, Layout, Row, Button, Modal, Input } from 'antd'
 import { Field, TaskCard } from '../components/presentational'
 import { withTaskAction } from '../components/container'
+import axios from 'axios'
+
+import { CODE_VERIFICATION_URL } from '../config/url.json'
 
 const { Content } = Layout
 
@@ -27,7 +30,47 @@ const fieldValueStyle = {
 }
 
 class Tasks extends Component {
+  state = {
+    visible: false,
+    confirmLoading: false,
+    currentId: '',
+    code: ''
+  }
+
+  handleOk = () => {
+    this.setState({ confirmLoading: true }, async () => {
+      try {
+        const res = await axios.get(
+          `${CODE_VERIFICATION_URL}?code=${this.state.code}`
+        )
+        console.log(res)
+      } catch (err) {
+        console.log(err)
+      }
+    })
+
+    this.setState({ visible: false, code: '' })
+  }
+
+  handleCancel = () => {
+    this.setState({
+      code: '',
+      confirmLoading: false,
+      currentId: '',
+      visible: false
+    })
+  }
+
+  handleClick = id => {
+    this.setState({
+      visible: true,
+      currentId: id,
+      confirmLoading: false,
+      code: ''
+    })
+  }
   render() {
+    const { visible, confirmLoading } = this.state
     const { tasks } = this.props
     return (
       <Layout>
@@ -46,14 +89,24 @@ class Tasks extends Component {
                         : card.missionName
                     }
                     footer={
-                      <Field
-                        label="Status:"
-                        labelStyle={{ marginRight: 10 }}
-                        value={fieldValue[card.missionStatus]}
-                        valueStyle={{
-                          color: fieldValueStyle[card.missionStatus]
-                        }}
-                      />
+                      <div>
+                        <Field
+                          label="Status:"
+                          labelStyle={{ marginRight: 10 }}
+                          value={fieldValue[card.missionStatus]}
+                          valueStyle={{
+                            color: fieldValueStyle[card.missionStatus]
+                          }}
+                          style={{ display: 'inline-block' }}
+                        />
+                        <Button
+                          style={{ float: 'right', display: 'inline-block' }}
+                          size="small"
+                          onClick={() => this.handleClick(card.Id)}
+                        >
+                          Verify
+                        </Button>
+                      </div>
                     }
                     key={`col${cardIndex}task${cardIndex}`}
                   >
@@ -65,6 +118,18 @@ class Tasks extends Component {
                 </Col>
               ))}
             </Row>
+            <Modal
+              title="Title"
+              visible={visible}
+              onOk={this.handleOk}
+              confirmLoading={confirmLoading}
+              onCancel={this.handleCancel}
+            >
+              <Input
+                placeholder="Enter the verification code"
+                onChange={e => this.setState({ code: e.target.value })}
+              />
+            </Modal>
           </Fragment>
         </Content>
       </Layout>

@@ -26,8 +26,8 @@ const mapDispatchToProps = dispatch => {
       const tasks = await getTasks()
       dispatch(updateTasks(tasks))
     },
-    updateUser: async () => {
-      const user = await getUser()
+    updateUser: async email => {
+      const user = await getUser(email)
       dispatch(updateUser(user))
     }
   }

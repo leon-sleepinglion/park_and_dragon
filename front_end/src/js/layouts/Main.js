@@ -15,7 +15,7 @@ class Main extends React.Component {
   }
 
   componentDidMount() {
-    this.props.updateUser()
+    this.props.updateUser(this.props.email)
     this.props.updateItems()
     this.props.updateInventory()
     this.props.updateTasks()

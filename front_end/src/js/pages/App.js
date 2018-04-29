@@ -21,10 +21,11 @@ const store = createStore(reducers)
 
 export default class App extends Component {
   state = {
-    login: true
+    login: true,
+    email: 'leonweecs@gmail.com'
   }
 
-  loginSuccess = () => this.setState({ login: true })
+  loginSuccess = email => this.setState({ login: true, email })
 
   render() {
     const { login } = this.state
@@ -32,7 +33,7 @@ export default class App extends Component {
       <Provider store={store}>
         <BrowserRouter>
           {login ? (
-            <Main config={mainConfig}>
+            <Main config={mainConfig} email={this.state.email}>
               <Switch>
                 <Route exact path="/home" render={() => <Home />} />
                 <Route exact path="/canvas" render={() => <Canvas />} />
