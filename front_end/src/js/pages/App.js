@@ -20,7 +20,7 @@ const store = createStore(reducers)
 
 export default class App extends Component {
   state = {
-    login: false
+    login: true
   }
 
   loginSuccess = () => this.setState({ login: true })

@@ -1,18 +1,17 @@
-import axios from 'axios'
 import { GET_SHOP_ITEMS_URL, BUY_SHOP_ITEMS_URL } from '../config/url.json'
+import { getAxios, postAxios } from './tokenHelper'
 
 export const getShopItems = async () => {
   try {
-    const res = await axios.get(GET_SHOP_ITEMS_URL)
-    console.log(res)
-    return res.map(task => ({
-      itemId: res.id,
-      itemName: res.name,
-      itemDescription: res.description,
-      itemCoins: res.coins,
-      itemGems: res.gems,
-      itemOwned: res.owned,
-      itemType: res.type
+    const res = await getAxios(GET_SHOP_ITEMS_URL)
+    return res.data.item.map(item => ({
+      id: item.id,
+      title: item.name,
+      description: item.description,
+      coins: item.coins,
+      gems: item.gems,
+      type: item.types,
+      logo: item.image_url
     }))
   } catch (error) {
     console.log(error)
@@ -22,7 +21,7 @@ export const getShopItems = async () => {
 
 export const buyShopItems = async itemId => {
   try {
-    const res = await axios.post(BUY_SHOP_ITEMS_URL, { id: itemId })
+    const res = await postAxios(BUY_SHOP_ITEMS_URL, { id: itemId, user_id: 1 })
     console.log(res)
     return res
   } catch (err) {

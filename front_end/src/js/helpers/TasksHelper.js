@@ -1,4 +1,3 @@
-import axios from 'axios'
 import { GET_TASKS_URL } from '../config/url.json'
 import { getAxios } from './tokenHelper'
 
