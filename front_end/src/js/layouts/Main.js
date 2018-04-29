@@ -4,6 +4,7 @@ import { withRouter } from 'react-router'
 import { Link } from 'react-router-dom'
 import { Layout, Menu, Icon, Button } from 'antd'
 import withMainAction from '../components/container/withMainAction'
+import { postAxios } from '../helpers/tokenHelper'
 
 const { Header, Content, Footer, Sider } = Layout
 
@@ -15,6 +16,7 @@ class Main extends React.Component {
   }
 
   componentDidMount() {
+    this.props.updateUser(this.props.email)
     this.props.updateItems()
     this.props.updateInventory()
     this.props.updateTasks()
@@ -50,6 +52,10 @@ class Main extends React.Component {
 
   onSiderCollapse = siderCollapsed => {
     this.setState({ siderCollapsed })
+  }
+
+  logOut = () => {
+    postAxios('http://localhost:5000/logout').then(this.props.logout)
   }
 
   render() {
@@ -97,6 +103,7 @@ class Main extends React.Component {
                 marginTop: 16,
                 verticalAlign: 'middle'
               }}
+              onClick={this.logOut}
             >
               Log out
             </Button>

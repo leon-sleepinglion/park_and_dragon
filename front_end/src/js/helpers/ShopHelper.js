@@ -1,4 +1,4 @@
-import { GET_SHOP_ITEMS_URL, BUY_SHOP_ITEMS_URL } from '../config/url.json'
+import { GET_SHOP_ITEMS_URL, BUY_SHOP_ITEMS_URL } from '../config/url.js'
 import { getAxios, postAxios } from './tokenHelper'
 
 export const getShopItems = async () => {
@@ -11,7 +11,8 @@ export const getShopItems = async () => {
       coins: item.coins,
       gems: item.gems,
       type: item.types,
-      logo: item.image_url
+      logo: item.image_url,
+      category: item.category
     }))
   } catch (error) {
     console.log(error)
@@ -21,7 +22,10 @@ export const getShopItems = async () => {
 
 export const buyShopItems = async itemId => {
   try {
-    const res = await postAxios(BUY_SHOP_ITEMS_URL, { id: itemId, user_id: 1 })
+    const res = await postAxios(BUY_SHOP_ITEMS_URL, {
+      item_id: itemId,
+      user_id: 1
+    })
     console.log(res)
     return res
   } catch (err) {

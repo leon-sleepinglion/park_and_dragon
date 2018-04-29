@@ -1,0 +1,11 @@
+const BASE = 'http://localhost:5000'
+
+export const GET_TASKS_URL = BASE + '/alltasks?user_id=1'
+export const GET_SHOP_ITEMS_URL = BASE + '/getshopitem?user=1'
+export const BUY_SHOP_ITEMS_URL = BASE + '/getinventory?user=1'
+export const GET_INVENTORY_URL = BASE + '/getinventory?user=1'
+export const LOGIN_URL = BASE + '/login'
+export const TWIZO_URL = BASE + '/twizo'
+export const PROTECTED_URL = BASE + '/protected'
+export const GET_USER_URL = BASE + '/user'
+export const CODE_VERIFICATION_URL = BASE + '/applycode'

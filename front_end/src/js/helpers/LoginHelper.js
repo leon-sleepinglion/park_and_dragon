@@ -1,5 +1,5 @@
 import axios from 'axios'
-import { LOGIN_URL, TWIZO_URL, PROTECTED_URL } from '../config/url.json'
+import { LOGIN_URL, TWIZO_URL, PROTECTED_URL } from '../config/url.js'
 
 export const loginAttempt = async (email, password) => {
   try {
@@ -11,13 +11,19 @@ export const loginAttempt = async (email, password) => {
   }
 }
 
-export const twizoVerification = async (key, email, loginSuccess) => {
+export const twizoVerification = async (
+  key,
+  email,
+  token,
+  loginSuccess,
+  loginFail
+) => {
   try {
-    const res = await axios.post(TWIZO_URL, { messageId: key, email })
+    const res = await axios.post(TWIZO_URL, { messageId: key, email, token })
     storeJWT(res.data.access_token)
     loginSuccess()
   } catch (err) {
-    setTimeout(() => twizoVerification(key, email, loginSuccess), 500)
+    loginFail()
   }
 }
 
