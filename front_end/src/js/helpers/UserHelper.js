@@ -1,5 +1,5 @@
-import axios from 'axios'
 import { GET_USER_URL } from '../config/url.js'
+import { getAxios } from '../helpers/tokenHelper'
 
 const user = {
   userId: '123444411123123',
@@ -15,8 +15,12 @@ const user = {
 
 export const getUser = async email => {
   try {
-    const res = await axios.get(`${GET_USER_URL}?email=${email}`)
-    return { ...user, ...res.data.user_details }
+    const res = await getAxios(`${GET_USER_URL}?email=${email}`)
+    return {
+      ...user,
+      ...res.data.user_details,
+      coins: res.data.user_details.point
+    }
   } catch (error) {
     console.log(error)
     return []

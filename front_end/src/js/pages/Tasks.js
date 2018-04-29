@@ -2,7 +2,7 @@ import React, { Component, Fragment } from 'react'
 import { Col, Layout, Row, Button, Modal, Input } from 'antd'
 import { Field, TaskCard } from '../components/presentational'
 import { withTaskAction } from '../components/container'
-import axios from 'axios'
+import { getAxios } from '../helpers/tokenHelper'
 
 import { CODE_VERIFICATION_URL } from '../config/url.js'
 
@@ -40,7 +40,7 @@ class Tasks extends Component {
   handleOk = () => {
     this.setState({ confirmLoading: true }, async () => {
       try {
-        const res = await axios.get(
+        const res = await getAxios(
           `${CODE_VERIFICATION_URL}?code=${this.state.code}`
         )
         console.log(res)
