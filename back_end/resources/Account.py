@@ -69,7 +69,7 @@ class User(Resource):
             print(traceback.format_exc())
             return {'message': 'An error occurred. Check console for error message.'}, 400
 
-    # @jwt_required
+    @jwt_required
     def get(self):
         email = request.args.get('email')
         print(email)

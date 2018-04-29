@@ -26,7 +26,7 @@ def twizo_request(recipient):
 		# "issuer": "Park and Dragon"
 	}
 
-	r = requests.post(url, data=json.dumps(data), headers=headers, auth=HTTPBasicAuth('twizo', 'l0DczJDRfdcjUBFw9Nc6K2BXBk4pT9Fpt59BaOIfankw27-N'))
+	r = requests.post(url, data=json.dumps(data), headers=headers, auth=HTTPBasicAuth('twizo', 'otS3gV4v8PB9niI2ICxPsg6NrmHgwK4whd8gED3aelHQMayw'))
 	# print(json.loads(r.text))
 	return json.loads(r.text)['messageId']
 
@@ -37,7 +37,7 @@ def twizo_verify(messageId, token):
 		"Content-Type": "application/json; charset=utf8"
 	}
 
-	r = requests.get(url, headers=headers, auth=HTTPBasicAuth('twizo', 'l0DczJDRfdcjUBFw9Nc6K2BXBk4pT9Fpt59BaOIfankw27-N'))
+	r = requests.get(url, headers=headers, auth=HTTPBasicAuth('twizo', 'otS3gV4v8PB9niI2ICxPsg6NrmHgwK4whd8gED3aelHQMayw'))
 	# print(json.loads(r.text))
 	return json.loads(r.text)['statusCode']
 

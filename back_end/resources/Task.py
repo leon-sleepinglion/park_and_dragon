@@ -14,7 +14,7 @@ class TaskSchema(ma.ModelSchema):
 
 
 class AllTasksResource(Resource):
-    #@jwt_required
+    @jwt_required
     def get(self):
         user_id = request.args.get('user_id')
         try:
