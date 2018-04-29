@@ -21,24 +21,24 @@ def twizo_request(recipient):
 	}
 
 	data = {
-		"recipient" : recipient,
-		"type": "telegram",
-		"issuer": "Park and Dragon"
+		"recipient" : recipient
+		# "type": "telegram",
+		# "issuer": "Park and Dragon"
 	}
 
 	r = requests.post(url, data=json.dumps(data), headers=headers, auth=HTTPBasicAuth('twizo', 'l0DczJDRfdcjUBFw9Nc6K2BXBk4pT9Fpt59BaOIfankw27-N'))
-	# print(json.loads(r.text)['messageId'])
+	# print(json.loads(r.text))
 	return json.loads(r.text)['messageId']
 
-def twizo_verify(messageId):
-	url = "https://api-asia-01.twizo.com/verification/submit/" + messageId
+def twizo_verify(messageId, token):
+	url = "https://api-asia-01.twizo.com/verification/submit/" + messageId + "?token=" + token
 	headers = {
 		"Accept": "application/json",
 		"Content-Type": "application/json; charset=utf8"
 	}
 
 	r = requests.get(url, headers=headers, auth=HTTPBasicAuth('twizo', 'l0DczJDRfdcjUBFw9Nc6K2BXBk4pT9Fpt59BaOIfankw27-N'))
-	# print(json.loads(r.text)['statusCode'])
+	# print(json.loads(r.text))
 	return json.loads(r.text)['statusCode']
 
 def code_generator(size=6, chars=string.ascii_uppercase + string.digits):
