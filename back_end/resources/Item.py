@@ -7,7 +7,7 @@ from models.model import UserItemModel, User, ItemModel
 from db import ma, db
 
 class Item(Resource):
-    # @jwt_required
+    @jwt_required
     def get(self):
         user_id = request.args.get('user')
 
@@ -33,7 +33,7 @@ class Item(Resource):
             return {'message': 'An error occurred. Check console for more info.'}
 
 
-    # @jwt_required
+    @jwt_required
     def post(self):
         parser = reqparse.RequestParser()
         parser.add_argument('user_id')
@@ -53,6 +53,7 @@ class Item(Resource):
             return {'message': 'An error occurred. Check console for more info.'}
 
 class ShopItem(Resource):
+    @jwt_required
     def get(self):
         user_id = request.args.get('user')
 
