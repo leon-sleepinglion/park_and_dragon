@@ -54,6 +54,7 @@ class UserLogout(Resource):
 class TwoFactorAuth(Resource):
     parser = reqparse.RequestParser()
     parser.add_argument('messageId')
+    parser.add_argument('token')
     parser.add_argument('email')
 
     def post(self):
@@ -61,7 +62,7 @@ class TwoFactorAuth(Resource):
         try:
             # print(secret)
             # print(args['messageId'])
-            status = twizo_verify(args['messageId'])
+            status = twizo_verify(args['messageId'], args['token'])
             # print(args['messageId'] in secret)
             # print(status)
             if (status == 1 or status == '1') and args['messageId'] in secret:

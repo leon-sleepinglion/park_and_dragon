@@ -1,13 +1,16 @@
 import { connect } from 'react-redux'
 import { updateShopItems } from '../../actions/ShopAction'
+import { updateInventory } from '../../actions/InventoryAction'
+import { getInventory } from '../../helpers/InventoryHelper'
 import { getShopItems, buyShopItems } from '../../helpers/ShopHelper'
+import { updateUser } from '../../actions/UserAction'
+import { getUser } from '../../helpers/UserHelper'
 
 const mapStateToProps = state => {
   return {
     items: state.shop.items.filter(
       item => !state.inventory.find(owned => owned.id === item.id)
     ),
-    vouchers: state.shop.vouchers,
     coins: state.user.coins,
     gems: state.user.gems,
     inventoryCount: state.inventory.length
@@ -23,7 +26,11 @@ const mapDispatchToProps = dispatch => {
     buyItem: async itemId => {
       await buyShopItems(itemId)
       const items = await getShopItems()
+      const inventory = await getInventory()
+      const user = await getUser('leonweecs@gmail.com')
+      dispatch(updateInventory(inventory))
       dispatch(updateShopItems(items))
+      dispatch(updateUser(user))
     }
   }
 }

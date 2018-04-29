@@ -20,11 +20,13 @@ class Login extends React.Component {
   state = {
     emailAddress: '',
     password: '',
-    twizoWait: false
+    twizoWait: false,
+    code: '',
+    messageId: ''
   }
 
   componentDidMount() {
-    this.props.verifyJWT(this.props.loginSuccess)
+    this.props.verifyJWT(() => this.props.loginSuccess(this.props.email))
   }
 
   validateFormData() {
@@ -37,17 +39,12 @@ class Login extends React.Component {
 
   loginOnClick = async () => {
     const { emailAddress, password } = this.state
-    const key = await this.props.loginAttempt(emailAddress, password)
-    console.log(key)
-    key
-      ? this.setState({ twizoWait: true }, () =>
-          this.props.twizoVerification(
-            key,
-            emailAddress,
-            this.props.loginSuccess
-          )
-        )
-      : window.location.reload()
+    const messageId = await this.props.loginAttempt(emailAddress, password)
+    this.setState({ messageId, twizoWait: true })
+  }
+
+  loginFail = () => {
+    this.setState({ code: '' }, () => alert('Invalid token. Try again.'))
   }
 
   render() {
@@ -73,10 +70,31 @@ class Login extends React.Component {
             </Row>
             <Row>
               {this.state.twizoWait ? (
-                <p>
-                  Waiting for Twizo verification. Please check your Telegram to
-                  sign in.
-                </p>
+                <Form className="login-form">
+                  <FormItem label="Verification Token">
+                    <Input
+                      placeholder="Enter your verification token here"
+                      value={this.state.code}
+                      onChange={e => this.setState({ code: e.target.value })}
+                    />
+                  </FormItem>
+                  <Button
+                    onClick={() =>
+                      this.props.twizoVerification(
+                        this.state.messageId,
+                        this.state.emailAddress,
+                        this.state.code,
+                        () => this.props.loginSuccess(this.state.emailAddress),
+                        this.loginFail
+                      )
+                    }
+                    type="primary"
+                    className="login-form-button"
+                    style={{ width: '100%' }}
+                  >
+                    OK
+                  </Button>
+                </Form>
               ) : (
                 <Form className="login-form">
                   {config &&

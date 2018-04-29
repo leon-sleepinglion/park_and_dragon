@@ -21,6 +21,13 @@ class Shop extends Component {
     console.log('search')
   }
 
+  filter = () =>
+    this.state.radioValue === 'in-game'
+      ? this.props.items.filter(item => item.category === 'in-game')
+      : this.state.radioValue === 'rewards'
+        ? this.props.items.filter(item => item.category === 'rewards')
+        : this.props.items
+
   render() {
     const paginationProps = {
       showSizeChanger: true,
@@ -29,7 +36,7 @@ class Shop extends Component {
       total: 1
     }
 
-    const { loading, buyItem, items, coins, gems, inventoryCount } = this.props
+    const { loading, buyItem, coins, gems, inventoryCount } = this.props
 
     const extraContent = (
       <div>
@@ -38,8 +45,8 @@ class Shop extends Component {
           onChange={e => this.radioOnChange(e)}
         >
           <RadioButton value="all">All</RadioButton>
-          <RadioButton value="clothes">Clothes</RadioButton>
-          <RadioButton value="accessories">Accessories</RadioButton>
+          <RadioButton value="in-game">In-Game</RadioButton>
+          <RadioButton value="rewards">Rewards</RadioButton>
         </RadioGroup>
         <Search
           style={{ marginLeft: '16px', width: '272px' }}
@@ -65,7 +72,7 @@ class Shop extends Component {
             extraContent={extraContent}
             title="Shop"
             loading={loading}
-            list={items}
+            list={this.filter()}
             itemActions={id => [
               <Button onClick={() => buyItem(id)} icon="shopping-cart" />
             ]}

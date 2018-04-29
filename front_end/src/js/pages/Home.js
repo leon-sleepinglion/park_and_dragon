@@ -7,14 +7,9 @@ class Home extends React.Component {
     const { user, tasks, shop } = this.props
     return (
       <div>
-        <Row gutter="24">
+        <Row gutter={24}>
           <Col span="8">
             <Card>
-              <img
-                src={user.pic}
-                alt="profile pic"
-                style={{ width: '100%', marginLeft: -30 }}
-              />
               <h1
                 style={{
                   textAlign: 'center',
@@ -24,13 +19,27 @@ class Home extends React.Component {
               >
                 {user.username}
               </h1>
+              <img
+                src={user.pic}
+                alt="profile pic"
+                style={{ width: '100%', marginLeft: -30 }}
+              />
+              <h2
+                style={{
+                  textAlign: 'center',
+                  margin: 0,
+                  fontFamily: 'Berkshire Swash, cursive'
+                }}
+              >
+                {`${user.coins} coins | ${user.gems} gems`}
+              </h2>
             </Card>
           </Col>
           <Col span="8">
-            <Card title="Task" bordered={false}>
+            <Card title="Task" bordered={false} style={{ minHeight: 400 }}>
               {tasks.length ? (
-                tasks.map(({ missionName, id }) => (
-                  <p key={missionName}>{missionName}</p>
+                tasks.map(({ missionName, id }, index) => (
+                  <p key={index}>{missionName}</p>
                 ))
               ) : (
                 <p>No task.</p>
@@ -38,17 +47,19 @@ class Home extends React.Component {
             </Card>
           </Col>
           <Col span="8">
-            <Card title="Shop" bordered={false}>
+            <Card title="Redemption Shop" bordered={false}>
               {shop.items.length ? (
-                shop.items.map(({ title, id }) => <p key={title}>{title}</p>)
+                shop.items.map(({ title, id }, index) => (
+                  <p key={index}>{title}</p>
+                ))
               ) : (
                 <p>No item on sale.</p>
               )}
             </Card>
           </Col>
         </Row>
-        <Row style={{ marginTop: 24 }} gutter="24">
-          <Col>
+        <Row style={{ marginTop: 24 }} gutter={24}>
+          <Col span="16">
             <Card
               style={{
                 minHeight: 300,
@@ -66,6 +77,22 @@ class Home extends React.Component {
                 several new exciting features and we are really looking forward
                 to providing you with better experience!
               </p>
+            </Card>
+          </Col>
+          <Col span="8">
+            <Card
+              cover={
+                <img
+                  src="https://files.slack.com/files-pri/T7VASFHEE-FAF8NNE82/mcd_q4_mcdsupremes-facebook-1.jpg"
+                  alt="burger"
+                />
+              }
+              bordered={false}
+            >
+              <Card.Meta
+                title="Limited Time Offer"
+                description="Collect 500 coins to get a free burger from McDonald."
+              />
             </Card>
           </Col>
         </Row>

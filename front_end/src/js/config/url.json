@@ -5,5 +5,7 @@
   "GET_INVENTORY_URL": "http://localhost:5000/getinventory?user=1",
   "LOGIN_URL": "http://localhost:5000/login",
   "TWIZO_URL": "http://localhost:5000/twizo",
-  "PROTECTED_URL": "http://localhost:5000/protected"
+  "PROTECTED_URL": "http://localhost:5000/protected",
+  "GET_USER_URL": "http://localhost:5000/user",
+  "CODE_VERIFICATION_URL": "http://localhost:5000/applycode"
 }

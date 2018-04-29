@@ -15,15 +15,19 @@ import User from './User'
 import Canvas from './Canvas'
 import Login from './Login'
 import Register from './Register'
+import Code from './Code'
 
 const store = createStore(reducers)
 
 export default class App extends Component {
   state = {
-    login: true
+    login: false,
+    email: 'leonweecs@gmail.com'
   }
 
-  loginSuccess = () => this.setState({ login: true })
+  loginSuccess = email => this.setState({ login: true, email })
+
+  logout = () => this.setState({ login: false })
 
   render() {
     const { login } = this.state
@@ -31,7 +35,11 @@ export default class App extends Component {
       <Provider store={store}>
         <BrowserRouter>
           {login ? (
-            <Main config={mainConfig}>
+            <Main
+              config={mainConfig}
+              email={this.state.email}
+              logout={this.logout}
+            >
               <Switch>
                 <Route exact path="/home" render={() => <Home />} />
                 <Route exact path="/canvas" render={() => <Canvas />} />
@@ -44,22 +52,26 @@ export default class App extends Component {
             </Main>
           ) : (
             <Blank config={blankConfig}>
-              <Route
-                exact
-                path="/login"
-                render={() => (
-                  <Login
-                    loginSuccess={this.loginSuccess}
-                    config={loginConfig}
-                  />
-                )}
-              />
-              <Route
-                exact
-                path="/register"
-                render={() => <Register config={registerConfig} />}
-              />
-              <Redirect to="/login" />
+              <Switch>
+                <Route
+                  exact
+                  path="/login"
+                  render={() => (
+                    <Login
+                      email={this.state.email}
+                      loginSuccess={this.loginSuccess}
+                      config={loginConfig}
+                    />
+                  )}
+                />
+                <Route
+                  exact
+                  path="/register"
+                  render={() => <Register config={registerConfig} />}
+                />
+                <Route exact path="/code" render={() => <Code />} />
+                <Redirect to="/login" />
+              </Switch>
             </Blank>
           )}
         </BrowserRouter>
