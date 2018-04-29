@@ -6,16 +6,6 @@ from flask_jwt_extended import (create_access_token, create_refresh_token, jwt_r
 from common.util import hash_password
 from models.model import User as User_Model
 
-
-# An example of request body payload data structure.
-# {
-#     "name" : "Postman6",
-#     "email": "postman6@gmail.com",
-#     "password": "asdf654",
-#     "user_level": 1,
-#     "phone_number": "=60169157190"
-#     "has_telegram": true
-# }
 class User(Resource):
     @jwt_required
     def post(self):

@@ -12,11 +12,11 @@ with app.app_context():
     db.drop_all()
     db.create_all()
 
-    gg = User(point=35, name="leon", email_address="leonweecs@gmail.com", password_hash="$pbkdf2-sha256$29000$u3cO4TwnROjdmzPm/N9biw$8OZEj/4izb9Zt7REh9TMlm35WQtwPFRHDVFM.VhQjl0", user_level=2, phone_number="60104315105", has_telegram=True)
-    gg2 = User(name="baoxuan", email_address="baoxuan9616@gmail.com", password_hash="alsjdkh9876", user_level=2, phone_number="+60169157190", has_telegram=True)
-    gg3 = User(name="June", email_address="jeff_bluesky@gmail.com", password_hash="aoio;asd", user_level=2, phone_number="+60198745982", has_telegram=False)
-    gg4 = User(name="woh", email_address="kamwoh@gmail.com", password_hash="6541lkjhfdg", user_level=1, phone_number="+9876543210", has_telegram=True)
-    gg5 = User(name="tecklee", email_address="tecklee@gmail.com", password_hash="adfasdf", user_level=1, phone_number="+9876543218", has_telegram=False)
+    user1 = User(point=35, name="leon", email_address="leonweecs@gmail.com", password_hash="$pbkdf2-sha256$29000$u3cO4TwnROjdmzPm/N9biw$8OZEj/4izb9Zt7REh9TMlm35WQtwPFRHDVFM.VhQjl0", user_level=2, phone_number="60104315105", has_telegram=True)
+    user2 = User(name="baoxuan", email_address="baoxuan9616@gmail.com", password_hash="alsjdkh9876", user_level=2, phone_number="+60169157190", has_telegram=True)
+    user3 = User(name="June", email_address="jeff_bluesky@gmail.com", password_hash="aoio;asd", user_level=2, phone_number="+60198745982", has_telegram=False)
+    user4 = User(name="woh", email_address="kamwoh@gmail.com", password_hash="6541lkjhfdg", user_level=1, phone_number="+9876543210", has_telegram=True)
+    user5 = User(name="tecklee", email_address="tecklee@gmail.com", password_hash="adfasdf", user_level=1, phone_number="+9876543218", has_telegram=False)
 
     task1 = TaskModel(
         name = "Purchase 10 Sundae Cones at McDonalds.",
@@ -47,44 +47,20 @@ with app.app_context():
     )
 
     db.session.add_all([task1, task2, task3])
-    db.session.add_all([gg, gg2, gg3, gg4, gg5])
-    
-    
-    db.session.add(gg)
-    db.session.add(gg2)
-    db.session.add(gg3)
-    # db.session.add(gg4)
-    # db.session.add(gg5)
-
-    # db.session.commit()
-    # from models.model import TaskModel
-    # gg6 = TaskModel(
-    #     name="Mission1",
-    #     description="GGWP",
-    #     location="CoSpace Park",
-    #     point=25,
-    #     status=0,
-    #     user_id=1
-    # )
-    # gg7 = TaskModel(
-    #     name="Mission2",
-    #     description="GGWP",
-    #     location="CoSpace Park",
-    #     point=25,
-    #     status=2,
-    #     user_id=2
-    # )
-    # db.session.add(gg6)
-    # db.session.add(gg7)
+    db.session.add_all([user1, user2, user3, user4, user5])
 
     from models.model import ItemModel
-    item2 = ItemModel(name="shield", description="It is a shield, what do you expect?",coins=20, gems=2, types="sohai", image_url="https://www.google.com/search?rlz=1C1CHBF_enMY790MY790&biw=1517&bih=746&tbm=isch&sa=1&ei=f-fkWq6bHof_vATTx6NY&q=sword+cartoon&oq=sword+cartoon&gs_l=psy-ab.3..0l10.118412.127190.0.127436.13.9.0.4.4.0.50.360.9.9.0....0...1c.1.64.psy-ab..0.13.380...0i67k1.0.0JlzkRh8iWc#imgrc=nf0gn8_cPmdN2M:")
-    item1 = ItemModel(name="sword", description="It is a sword, what do you expect?",coins=10, gems=2, types="superpower", image_url="")
-    item2 = ItemModel(name="shield", description="It is a shield, what do you expect?",coins=20, gems=2, types="superpower", image_url="https://www.google.com/search?q=shield+cartoon&rlz=1C1CHBF_enMY790MY790&tbm=isch&source=iu&ictx=1&fir=FbjHUvUtO28dqM%253A%252CsTAw1_mIOpBD_M%252C_&usg=__Ni7yAYvsRK9has9qcsALaha-g1g%3D&sa=X&ved=0ahUKEwiru47j9d3aAhVMKo8KHXLqBSkQ9QEIKjAA#imgrc=VsyBDgll-combM:")
-    item3 = ItemModel(name="Thanos' glove", description="It collects stone automatically.",coins=1000, gems=20, types="superpower", image_url="https://www.google.com/search?q=thanos+glove&rlz=1C1CHBF_enMY790MY790&source=lnms&tbm=isch&sa=X&ved=0ahUKEwiBnJnp9N3aAhUBo48KHStEDQ4Q_AUICigB&biw=1517&bih=746#imgrc=zg-p1rXN6kc5UM:")
+
+    item1 = ItemModel(name="Infinity sword", description="It is a normal sword, what do you expect?", coins=10, gems=2, types="accessory", image_url="http://www.clker.com/cliparts/a/7/c/6/1194989442932416363sword_01.svg.hi.png")
+    item2 = ItemModel(name="Silver shield", description="It is a normal shield, what do you expect?", coins=20, gems=2, types="accessory", image_url="https://cdn0.iconfinder.com/data/icons/communication-and-multimedia/48/communication_and_multimedia_flat_icons-10-512.png")
+    item3 = ItemModel(name="Knight Armor", description="It reduces the damage you take.", coins=50, gems=20, types="clothes", image_url="https://vignette.wikia.nocookie.net/helmet-heroes/images/f/f9/Knight_Armor.png/revision/latest?cb=20131025151115")
+    item4 = ItemModel(name="Helm of Dominator", description="It enables lifesteal on your physical attack!", coins=200, gems=20, types="clothes", image_url="http://diysolarpanelsv.com/images/crusader-helmet-clip-art-48.png")
+    item5 = ItemModel(name="Thanos' glove", description="It collects stone automatically.", coins=1000, gems=20, types="accessory", image_url="https://ae01.alicdn.com/kf/HTB1__g9i3fH8KJjy1zcq6ATzpXa9/Avengers-Infinity-War-Thanos-Infinity-Gauntlet-Cosplay-Latex-Gloves-Superhero-Avengers-Thanos-Glove-Halloween-Party-Accessories.jpg_640x640.jpg")
     item1.save_item()
     item2.save_item()
     item3.save_item()
+    item4.save_item()
+    item5.save_item()
     db.session.commit()
 
     from models.model import UserItemModel
