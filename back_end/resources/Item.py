@@ -12,7 +12,7 @@ class Item(Resource):
         user_id = request.args.get('user')
 
         try:
-            sql = "SELECT item.id, item.name, item.description, item.coins, item.gems, item.types, item.image_url FROM item JOIN user_item ON user_item.item_id = item.id WHERE user_item.user_id = " + user_id
+            sql = "SELECT item.id, item.name, item.description, item.coins, item.gems, item.category, item.types, item.image_url FROM item JOIN user_item ON user_item.item_id = item.id WHERE user_item.user_id = " + user_id
         
             result = db.engine.execute(sql)
 
@@ -21,7 +21,7 @@ class Item(Resource):
                 "id":x["id"], 
                 "description":x["description"], 
                 "coins": x["coins"], 
-                "gems":x["gems"], "types":x["types"], "image_url":x["image_url"]} for x in result]
+                "gems":x["gems"], "types":x["types"], "category":x["category"], "image_url":x["image_url"]} for x in result]
         
             if(items.__len__ == 0):
                 return {'message': '0 item own by user.', 'item':items}, 200
@@ -57,7 +57,7 @@ class ShopItem(Resource):
         user_id = request.args.get('user')
 
         try:
-            sql = "SELECT item.id, item.name, item.description, item.coins, item.gems, item.types, item.image_url FROM item JOIN user_item ON user_item.item_id != item.id WHERE user_item.user_id = " + user_id
+            sql = "SELECT item.id, item.name, item.description, item.coins, item.gems, item.types, item.image_url, item.category FROM item JOIN user_item ON user_item.item_id != item.id WHERE user_item.user_id = " + user_id
         
             result = db.engine.execute(sql)
 
@@ -67,12 +67,26 @@ class ShopItem(Resource):
             "description":x["description"], 
             "coins": x["coins"], 
             "gems":x["gems"], 
-            "types":x["types"], 
+            "types":x["types"],
+            "category":x["category"],
             "image_url":x["image_url"]} for x in result]
+
+            gg = []
+            temp = False
+            for item in items:
+                for x in gg:
+                    temp = False
+                    if item["id"] == x["id"]:
+                        temp = True
+                        break
+                if not temp:
+                    gg.append(item)
+                    temp = False
+
             if(items.__len__ == 0):
-                return {'message': 'Shop has 0 item', 'item':items}, 200
+                return {'message': 'Shop has 0 item', 'item':gg}, 200
             else:
-                return {'message': 'List of items in the shop.', 'item':items}, 200
+                return {'message': 'List of items in the shop.', 'item':gg}, 200
         
         except:
             print(traceback.format_exc())
