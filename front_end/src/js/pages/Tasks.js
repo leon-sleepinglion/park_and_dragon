@@ -10,7 +10,7 @@ const topColResponsiveProps = {
   sm: 12,
   md: 12,
   lg: 12,
-  xl: 6,
+  xl: 8,
   style: { marginBottom: 24 }
 }
 
@@ -40,7 +40,11 @@ class Tasks extends Component {
                     bordered={false}
                     missionLocation={card.missionLocation}
                     missionPoint={card.missionPoint}
-                    missionName={card.missionName}
+                    missionName={
+                      card.missionName.length > 17
+                        ? `${card.missionName.substring(0, 16)}...`
+                        : card.missionName
+                    }
                     footer={
                       <Field
                         label="Status:"

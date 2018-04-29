@@ -4,7 +4,9 @@ import { getShopItems, buyShopItems } from '../../helpers/ShopHelper'
 
 const mapStateToProps = state => {
   return {
-    items: state.shop.items,
+    items: state.shop.items.filter(
+      item => !state.inventory.find(owned => owned.id === item.id)
+    ),
     vouchers: state.shop.vouchers,
     coins: state.user.coins,
     gems: state.user.gems,

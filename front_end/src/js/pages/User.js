@@ -26,7 +26,8 @@ class User extends Component {
 
     const headerStyle = {
       color: 'rgba(0,0,0,0.85)',
-      fontSize: '20px'
+      fontSize: '20px',
+      fontFamily: 'Berkshire Swash, cursive'
     }
 
     const extraContent = (
@@ -50,13 +51,19 @@ class User extends Component {
     const description = (
       <DescriptionList gutter={24}>
         <Description title="Username" titleStyle={titleStyle} span={12}>
-          {username}
+          <span style={{ fontFamily: 'Berkshire Swash, cursive' }}>
+            {username}
+          </span>
         </Description>
         <Description title="Level" titleStyle={titleStyle} span={12}>
-          {level}
+          <span style={{ fontFamily: 'Berkshire Swash, cursive' }}>
+            {level}
+          </span>
         </Description>
         <Description title="Joined since" titleStyle={titleStyle} span={12}>
-          {joinedSince}
+          <span style={{ fontFamily: 'Berkshire Swash, cursive' }}>
+            {joinedSince}
+          </span>
         </Description>
       </DescriptionList>
     )
@@ -130,14 +137,20 @@ class User extends Component {
         />
         <Card title="User profile">
           <DescriptionList gutter={24}>
-            <Description title="Username" titleStyle={titleStyle} span={8}>
-              {username}
+            <Description title="Username" titleStyle={titleStyle} span={12}>
+              <span style={{ fontFamily: 'Berkshire Swash, cursive' }}>
+                {username}
+              </span>
             </Description>
-            <Description title="Level" titleStyle={titleStyle} span={8}>
-              {level}
+            <Description title="Level" titleStyle={titleStyle} span={12}>
+              <span style={{ fontFamily: 'Berkshire Swash, cursive' }}>
+                {level}
+              </span>
             </Description>
-            <Description title="Joined since" titleStyle={titleStyle} span={8}>
-              {joinedSince}
+            <Description title="Joined since" titleStyle={titleStyle} span={12}>
+              <span style={{ fontFamily: 'Berkshire Swash, cursive' }}>
+                {joinedSince}
+              </span>
             </Description>
           </DescriptionList>
         </Card>

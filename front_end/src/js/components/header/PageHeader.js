@@ -1,7 +1,6 @@
-import React, { createElement, PureComponent } from 'react';
+import React, { PureComponent } from 'react'
 
 export default class PageHeader extends PureComponent {
-
   render() {
     const {
       title,
@@ -10,7 +9,7 @@ export default class PageHeader extends PureComponent {
       action,
       content,
       extraContent
-    } = this.props;
+    } = this.props
 
     const detailStyle = {
       display: 'flex'
@@ -70,20 +69,25 @@ export default class PageHeader extends PureComponent {
     }
 
     return (
-      <div style={ detailStyle }>
-        { logoImageSource &&
-        <div style={ logoStyle }><img alt="" src={ logoImageSource } style={ logoImageStyle }/></div> }
-        <div style={ mainStyle }>
-          <div style={ rowStyle }>
-            { title && <h1 style={ titleStyle }>{ title }</h1> }
-            { action && <div style={ actionStyle }>{ action }</div> }
+      <div style={detailStyle}>
+        {logoImageSource && (
+          <div style={logoStyle}>
+            <img alt="" src={logoImageSource} style={logoImageStyle} />
           </div>
-          <div style={ rowStyle }>
-            { content && <div style={ contentStyle }>{ content }</div> }
-            { extraContent && <div style={ extraContentStyle }>{ extraContent }</div> }
+        )}
+        <div style={mainStyle}>
+          <div style={rowStyle}>
+            {title && <h1 style={titleStyle}>{title}</h1>}
+            {action && <div style={actionStyle}>{action}</div>}
+          </div>
+          <div style={rowStyle}>
+            {content && <div style={contentStyle}>{content}</div>}
+            {extraContent && (
+              <div style={extraContentStyle}>{extraContent}</div>
+            )}
           </div>
         </div>
       </div>
-    );
+    )
   }
 }

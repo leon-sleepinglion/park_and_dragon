@@ -1,15 +1,14 @@
-import axios from 'axios'
 import { GET_INVENTORY_URL } from '../config/url.json'
+import { getAxios } from './tokenHelper'
 
 export const getInventory = async () => {
   try {
-    const res = await axios.get(GET_INVENTORY_URL)
-    console.log(res)
-    return res.map(task => ({
-      itemId: res.id,
-      itemName: res.name,
-      itemDescription: res.description,
-      itemType: res.type
+    const res = await getAxios(GET_INVENTORY_URL)
+    return res.data.item.map(item => ({
+      id: item.id,
+      title: item.name,
+      description: item.description,
+      src: item.image_url
     }))
   } catch (error) {
     console.log(error)

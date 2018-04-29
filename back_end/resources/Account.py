@@ -6,16 +6,6 @@ from flask_jwt_extended import (create_access_token, create_refresh_token, jwt_r
 from common.util import hash_password
 from models.model import User as User_Model
 
-
-# An example of request body payload data structure.
-# {
-#     "name" : "Postman6",
-#     "email": "postman6@gmail.com",
-#     "password": "asdf654",
-#     "user_level": 1,
-#     "phone_number": "=60169157190"
-#     "has_telegram": true
-# }
 class User(Resource):
     @jwt_required
     def post(self):
@@ -79,7 +69,7 @@ class User(Resource):
             print(traceback.format_exc())
             return {'message': 'An error occurred. Check console for error message.'}, 400
 
-    @jwt_required
+    # @jwt_required
     def get(self):
         email = request.args.get('email')
         print(email)
@@ -90,7 +80,7 @@ class User(Resource):
                 return {'message': 'This user is not found in the database.'}, 400
             
             else:
-                user_details = json.loads(json.dumps({'name': existing_user.name, 'email_address': existing_user.email_address, 'user_level': existing_user.user_level, 'phone_number': existing_user.phone_number, 'has_telegram': existing_user.has_telegram}))
+                user_details = json.loads(json.dumps({'name': existing_user.name, 'email_address': existing_user.email_address, 'user_level': existing_user.user_level, 'phone_number': existing_user.phone_number, 'has_telegram': existing_user.has_telegram, 'point': existing_user.point, 'gems': existing_user.gems, 'created_on': existing_user.created_on, 'id': existing_user.id}))
                 return {'message': 'Found user.', 'user_details': user_details}, 200
         except:
             print(traceback.format_exc())

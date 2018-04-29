@@ -2,7 +2,7 @@ import React from 'react'
 import ReactDOM from 'react-dom'
 import { withRouter } from 'react-router'
 import { Link } from 'react-router-dom'
-import { Layout, Menu, Icon } from 'antd'
+import { Layout, Menu, Icon, Button } from 'antd'
 import withMainAction from '../components/container/withMainAction'
 
 const { Header, Content, Footer, Sider } = Layout
@@ -15,8 +15,8 @@ class Main extends React.Component {
   }
 
   componentDidMount() {
-    // this.props.updateItems()
-    // this.props.updateInventory()
+    this.props.updateItems()
+    this.props.updateInventory()
     this.props.updateTasks()
     window.addEventListener('resize', this.updateContentHeight)
     this.updateContentHeight()
@@ -87,9 +87,19 @@ class Main extends React.Component {
           }}
         >
           <Header ref={header => (this.header = header)} style={header.style}>
-            <Link to="/">
+            <Link to="/" style={{ display: 'inline-block', float: 'left' }}>
               <h1>{header.content}</h1>
             </Link>
+            <Button
+              style={{
+                float: 'right',
+                display: 'inline-block',
+                marginTop: 16,
+                verticalAlign: 'middle'
+              }}
+            >
+              Log out
+            </Button>
           </Header>
           <Content
             ref={content => (this.content = content)}

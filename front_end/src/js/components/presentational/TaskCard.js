@@ -11,7 +11,8 @@ const valueStyle = {
   marginBottom: 0,
   fontSize: '30px',
   lineHeight: '38px',
-  height: '38px'
+  height: '38px',
+  fontFamily: 'Berkshire Swash, cursive'
 }
 
 const renderValue = value => {

@@ -12,7 +12,7 @@ import Inventory from './Inventory'
 import Shop from './Shop'
 import Tasks from './Tasks'
 import User from './User'
-import Canvas from "./Canvas"
+import Canvas from './Canvas'
 import Login from './Login'
 import Register from './Register'
 
@@ -28,13 +28,13 @@ export default class App extends Component {
   render() {
     const { login } = this.state
     return (
-      <Provider store={ store }>
+      <Provider store={store}>
         <BrowserRouter>
           {login ? (
             <Main config={mainConfig}>
               <Switch>
                 <Route exact path="/home" render={() => <Home />} />
-                <Route exact path="/canvas" render={ () => <Canvas/> }/>
+                <Route exact path="/canvas" render={() => <Canvas />} />
                 <Route exact path="/tasks" render={() => <Tasks />} />
                 <Route exact path="/inventory" render={() => <Inventory />} />
                 <Route exact path="/shop" render={() => <Shop />} />

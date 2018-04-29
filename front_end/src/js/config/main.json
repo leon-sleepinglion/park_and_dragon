@@ -29,7 +29,7 @@
       },
       {
         "key": "canvas",
-        "icon": "user",
+        "icon": "rocket",
         "description": "Canvas"
       }
     ],
@@ -42,7 +42,11 @@
   },
   "header": {
     "content": "park n' dragons",
-    "style": { "background": "#fff", "padding": 0, "paddingLeft": 16 }
+    "style": {
+      "background": "#fff",
+      "padding": "0 16",
+      "fontFamily": "Berkshire Swash, cursive"
+    }
   },
   "footer": {
     "content": "Ant Design ©2016 Created by Ant UED",

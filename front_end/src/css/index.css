@@ -17,3 +17,9 @@ a:focus {
   outline: none;
   text-decoration: none;
 }
+
+.ant-card-head-title,
+.ant-steps-item-title,
+h1 {
+  font-family: Berkshire Swash, cursive;
+}
