@@ -30,7 +30,7 @@ class Home extends React.Component {
             <Card title="Task" bordered={false}>
               {tasks.length ? (
                 tasks.map(({ missionName, id }) => (
-                  <p key={id}>{missionName}</p>
+                  <p key={missionName}>{missionName}</p>
                 ))
               ) : (
                 <p>No task.</p>
@@ -40,14 +40,14 @@ class Home extends React.Component {
           <Col span="8">
             <Card title="Shop" bordered={false}>
               {shop.items.length ? (
-                shop.items.map(({ title, id }) => <p key={id}>{title}</p>)
+                shop.items.map(({ title, id }) => <p key={title}>{title}</p>)
               ) : (
                 <p>No item on sale.</p>
               )}
             </Card>
           </Col>
         </Row>
-        <Row style={{ marginTop: 24 }} gutter={24}>
+        <Row style={{ marginTop: 24 }} gutter="24">
           <Col>
             <Card
               style={{

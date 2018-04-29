@@ -1,4 +1,4 @@
-import React, { createElement, PureComponent } from 'react'
+import React, { PureComponent } from 'react'
 
 export default class PageHeader extends PureComponent {
   render() {
