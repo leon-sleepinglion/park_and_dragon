@@ -56,12 +56,15 @@ with app.app_context():
     item3 = ItemModel(category="in-game", name="Knight Armor", description="It reduces the damage you take.", coins=50, gems=20, types="clothes", image_url="https://vignette.wikia.nocookie.net/helmet-heroes/images/f/f9/Knight_Armor.png/revision/latest?cb=20131025151115")
     item4 = ItemModel(category="in-game", name="Helm of Dominator", description="It enables lifesteal on your physical attack!", coins=200, gems=20, types="clothes", image_url="http://diysolarpanelsv.com/images/crusader-helmet-clip-art-48.png")
     item5 = ItemModel(category="in-game", name="Thanos' glove", description="It collects stone automatically.", coins=1000, gems=20, types="accessory", image_url="https://ae01.alicdn.com/kf/HTB1__g9i3fH8KJjy1zcq6ATzpXa9/Avengers-Infinity-War-Thanos-Infinity-Gauntlet-Cosplay-Latex-Gloves-Superhero-Avengers-Thanos-Glove-Halloween-Party-Accessories.jpg_640x640.jpg")
-    item6 = ItemModel(category="rewards", name="2xRM10", description="It collects stone automatically.", coins=1000, gems=20, types="accessory", image_url="https://ae01.alicdn.com/kf/HTB1__g9i3fH8KJjy1zcq6ATzpXa9/Avengers-Infinity-War-Thanos-Infinity-Gauntlet-Cosplay-Latex-Gloves-Superhero-Avengers-Thanos-Glove-Halloween-Party-Accessories.jpg_640x640.jpg")
+    item6 = ItemModel(category="rewards", name="RM10 Discount Coupon for McDonald", description="It collects stone automatically.", coins=1000, gems=20, types="accessory", image_url="https://ae01.alicdn.com/kf/HTB1__g9i3fH8KJjy1zcq6ATzpXa9/Avengers-Infinity-War-Thanos-Infinity-Gauntlet-Cosplay-Latex-Gloves-Superhero-Avengers-Thanos-Glove-Halloween-Party-Accessories.jpg_640x640.jpg")
+    item7 = ItemModel(category="rewards", name="Buy 1 Free 1 at Pipe District", description="It collects stone automatically.", coins=1000, gems=20, types="accessory", image_url="https://ae01.alicdn.com/kf/HTB1__g9i3fH8KJjy1zcq6ATzpXa9/Avengers-Infinity-War-Thanos-Infinity-Gauntlet-Cosplay-Latex-Gloves-Superhero-Avengers-Thanos-Glove-Halloween-Party-Accessories.jpg_640x640.jpg")
     item1.save_item()
     item2.save_item()
     item3.save_item()
     item4.save_item()
     item5.save_item()
+    item6.save_item()
+    item7.save_item()
     db.session.commit()
 
     from models.model import UserItemModel
