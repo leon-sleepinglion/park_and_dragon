@@ -6,8 +6,10 @@
 
 1. ReactJS
 
-```yarn install
-yarn start```
+```
+yarn install
+yarn start
+```
 
 ### Developers
 
@@ -21,10 +23,12 @@ yarn start```
 1. Python 3.5
 2. Requirements.txt
 
-```pip install -r requirements.txt
+```
+pip install -r requirements.txt
 
 python3 db_init.py
-python3 app.py```
+python3 app.py
+```
 
 ### Developers
 
