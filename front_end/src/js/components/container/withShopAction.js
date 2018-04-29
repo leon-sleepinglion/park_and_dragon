@@ -7,7 +7,6 @@ const mapStateToProps = state => {
     items: state.shop.items.filter(
       item => !state.inventory.find(owned => owned.id === item.id)
     ),
-    vouchers: state.shop.vouchers,
     coins: state.user.coins,
     gems: state.user.gems,
     inventoryCount: state.inventory.length

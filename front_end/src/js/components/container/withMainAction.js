@@ -5,6 +5,8 @@ import { updateInventory } from '../../actions/InventoryAction'
 import { getInventory } from '../../helpers/InventoryHelper'
 import { updateTasks } from '../../actions/TasksAction'
 import { getTasks } from '../../helpers/TasksHelper'
+import { getUser } from '../../helpers/UserHelper'
+import { updateUser } from '../../actions/UserAction'
 
 const mapStateToProps = () => {
   return {}
@@ -23,6 +25,10 @@ const mapDispatchToProps = dispatch => {
     updateTasks: async () => {
       const tasks = await getTasks()
       dispatch(updateTasks(tasks))
+    },
+    updateUser: async () => {
+      const user = await getUser()
+      dispatch(updateUser(user))
     }
   }
 }

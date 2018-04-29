@@ -11,7 +11,8 @@ export const getShopItems = async () => {
       coins: item.coins,
       gems: item.gems,
       type: item.types,
-      logo: item.image_url
+      logo: item.image_url,
+      category: item.category
     }))
   } catch (error) {
     console.log(error)

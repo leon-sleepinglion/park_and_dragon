@@ -16,8 +16,8 @@ class User extends Component {
       level,
       joinedSince,
       status,
-      itemOwned,
-      pic
+      pic,
+      itemOwned
     } = this.props
 
     const textSecondaryStyle = {

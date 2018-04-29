@@ -15,6 +15,7 @@ import User from './User'
 import Canvas from './Canvas'
 import Login from './Login'
 import Register from './Register'
+import Code from './Code'
 
 const store = createStore(reducers)
 
@@ -44,22 +45,25 @@ export default class App extends Component {
             </Main>
           ) : (
             <Blank config={blankConfig}>
-              <Route
-                exact
-                path="/login"
-                render={() => (
-                  <Login
-                    loginSuccess={this.loginSuccess}
-                    config={loginConfig}
-                  />
-                )}
-              />
-              <Route
-                exact
-                path="/register"
-                render={() => <Register config={registerConfig} />}
-              />
-              <Redirect to="/login" />
+              <Switch>
+                <Route
+                  exact
+                  path="/login"
+                  render={() => (
+                    <Login
+                      loginSuccess={this.loginSuccess}
+                      config={loginConfig}
+                    />
+                  )}
+                />
+                <Route
+                  exact
+                  path="/register"
+                  render={() => <Register config={registerConfig} />}
+                />
+                <Route exact path="/code" render={() => <Code />} />
+                <Redirect to="/login" />
+              </Switch>
             </Blank>
           )}
         </BrowserRouter>
