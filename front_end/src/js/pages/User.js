@@ -15,7 +15,8 @@ class User extends Component {
       username,
       level,
       joinedSince,
-      status,
+      coins,
+      gems,
       pic,
       itemOwned
     } = this.props
@@ -33,12 +34,16 @@ class User extends Component {
     const extraContent = (
       <Row>
         <Col xs={24} sm={12}>
-          <div style={textSecondaryStyle}>Status</div>
-          <div style={headerStyle}>{status}</div>
+          <div style={textSecondaryStyle}>Coins</div>
+          <div style={headerStyle}>{coins}</div>
         </Col>
         <Col xs={24} sm={12}>
           <div style={textSecondaryStyle}>Item Owned</div>
           <div style={headerStyle}>{itemOwned}</div>
+        </Col>
+        <Col xs={24} sm={12}>
+          <div style={textSecondaryStyle}>Gems</div>
+          <div style={headerStyle}>{gems}</div>
         </Col>
       </Row>
     )

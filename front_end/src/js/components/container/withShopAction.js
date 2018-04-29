@@ -3,6 +3,8 @@ import { updateShopItems } from '../../actions/ShopAction'
 import { updateInventory } from '../../actions/InventoryAction'
 import { getInventory } from '../../helpers/InventoryHelper'
 import { getShopItems, buyShopItems } from '../../helpers/ShopHelper'
+import { updateUser } from '../../actions/UserAction'
+import { getuser, getUser } from '../../helpers/UserHelper'
 
 const mapStateToProps = state => {
   return {
@@ -25,8 +27,10 @@ const mapDispatchToProps = dispatch => {
       await buyShopItems(itemId)
       const items = await getShopItems()
       const inventory = await getInventory()
+      const user = await getUser('leonweecs@gmail.com')
       dispatch(updateInventory(inventory))
       dispatch(updateShopItems(items))
+      dispatch(updateUser(user))
     }
   }
 }

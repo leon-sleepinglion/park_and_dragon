@@ -20,7 +20,9 @@ class Login extends React.Component {
   state = {
     emailAddress: '',
     password: '',
-    twizoWait: false
+    twizoWait: false,
+    code: '',
+    messageId: ''
   }
 
   componentDidMount() {
@@ -37,15 +39,12 @@ class Login extends React.Component {
 
   loginOnClick = async () => {
     const { emailAddress, password } = this.state
-    const key = await this.props.loginAttempt(emailAddress, password)
-    console.log(key)
-    key
-      ? this.setState({ twizoWait: true }, () =>
-          this.props.twizoVerification(key, emailAddress, () =>
-            this.props.loginSuccess(emailAddress)
-          )
-        )
-      : window.location.reload()
+    const messageId = await this.props.loginAttempt(emailAddress, password)
+    this.setState({ messageId, twizoWait: true })
+  }
+
+  loginFail = () => {
+    this.setState({ code: '' }, () => alert('Invalid token. Try again.'))
   }
 
   render() {
@@ -71,10 +70,25 @@ class Login extends React.Component {
             </Row>
             <Row>
               {this.state.twizoWait ? (
-                <p>
-                  Waiting for Twizo verification. Please check your Telegram to
-                  sign in.
-                </p>
+                <div>
+                  <Input
+                    value={this.state.code}
+                    onChange={e => this.setState({ code: e.target.value })}
+                  />
+                  <Button
+                    onClick={() =>
+                      this.props.twizoVerification(
+                        this.state.key,
+                        this.state.email,
+                        this.state.code,
+                        () => this.props.loginSuccess(this.state.emailAddress),
+                        this.loginFail
+                      )
+                    }
+                  >
+                    OK
+                  </Button>
+                </div>
               ) : (
                 <Form className="login-form">
                   {config &&

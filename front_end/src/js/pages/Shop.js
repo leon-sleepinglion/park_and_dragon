@@ -25,7 +25,7 @@ class Shop extends Component {
     this.state.radioValue === 'in-game'
       ? this.props.items.filter(item => item.category === 'in-game')
       : this.state.radioValue === 'rewards'
-        ? this.props.items.filter(item => item.category === 'reward')
+        ? this.props.items.filter(item => item.category === 'rewards')
         : this.props.items
 
   render() {

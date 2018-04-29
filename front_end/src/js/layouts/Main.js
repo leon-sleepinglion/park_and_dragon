@@ -4,6 +4,7 @@ import { withRouter } from 'react-router'
 import { Link } from 'react-router-dom'
 import { Layout, Menu, Icon, Button } from 'antd'
 import withMainAction from '../components/container/withMainAction'
+import { postAxios } from '../helpers/tokenHelper'
 
 const { Header, Content, Footer, Sider } = Layout
 
@@ -53,6 +54,10 @@ class Main extends React.Component {
     this.setState({ siderCollapsed })
   }
 
+  logOut = () => {
+    postAxios('http://localhost:5000/logout').then(this.props.logout)
+  }
+
   render() {
     const { contentHeight, siderCollapsed } = this.state
     const { pathname } = this.props.location
@@ -98,6 +103,7 @@ class Main extends React.Component {
                 marginTop: 16,
                 verticalAlign: 'middle'
               }}
+              onClick={this.logOut}
             >
               Log out
             </Button>

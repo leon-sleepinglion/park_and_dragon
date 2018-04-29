@@ -1,4 +1,4 @@
-import { GET_TASKS_URL } from '../config/url.json'
+import { GET_TASKS_URL } from '../config/url.js'
 import { getAxios } from './tokenHelper'
 
 export const getTasks = async () => {

@@ -21,11 +21,13 @@ const store = createStore(reducers)
 
 export default class App extends Component {
   state = {
-    login: true,
+    login: false,
     email: 'leonweecs@gmail.com'
   }
 
   loginSuccess = email => this.setState({ login: true, email })
+
+  logout = () => this.setState({ login: false })
 
   render() {
     const { login } = this.state

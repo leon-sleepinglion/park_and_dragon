@@ -1,4 +1,4 @@
-import { GET_SHOP_ITEMS_URL, BUY_SHOP_ITEMS_URL } from '../config/url.json'
+import { GET_SHOP_ITEMS_URL, BUY_SHOP_ITEMS_URL } from '../config/url.js'
 import { getAxios, postAxios } from './tokenHelper'
 
 export const getShopItems = async () => {

@@ -4,7 +4,7 @@ import { Field, TaskCard } from '../components/presentational'
 import { withTaskAction } from '../components/container'
 import axios from 'axios'
 
-import { CODE_VERIFICATION_URL } from '../config/url.json'
+import { CODE_VERIFICATION_URL } from '../config/url.js'
 
 const { Content } = Layout
 

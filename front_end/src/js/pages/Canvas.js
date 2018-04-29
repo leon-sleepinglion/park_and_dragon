@@ -6,23 +6,9 @@ import cone1 from '../../assets/cone1.png'
 import cone2 from '../../assets/cone2.png'
 import cone3 from '../../assets/cone3.png'
 import PropTypes from 'prop-types'
-import burger1 from '../../assets/burger1.png'
-import burger2 from '../../assets/burger2.png'
-import burger3 from '../../assets/burger3.png'
-import ff1 from '../../assets/ff1.png'
-import icecream1 from '../../assets/icecream1.png'
-import nugget1 from '../../assets/nugget1.png'
 import background1 from '../../assets/background1.png'
 
 
-const images = [
-  burger1,
-  burger2,
-  burger3,
-  ff1,
-  icecream1,
-  nugget1
-]
 
 const randomIndex = (length) => {
   return Math.floor(Math.random() * length)
