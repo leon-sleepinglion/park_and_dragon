@@ -67,6 +67,7 @@ class User(db.Model):
     phone_number = db.Column(db.String(256))
     has_telegram = db.Column(db.Boolean)
     point = db.Column(db.Integer)
+    gems = db.Column(db.Integer)
     created_on = db.Column(db.String(512), default=db.func.now())
     last_updated = db.Column(db.String(512), default=db.func.now(), onupdate=db.func.now())
     is_deleted = db.Column(db.Boolean, default=False)
@@ -94,6 +95,7 @@ class ItemModel(db.Model):
     gems = db.Column(db.Integer)
     types = db.Column(db.String(256))
     image_url = db.Column(db.String(512))
+    category = db.Column(db.String(256))
     created_on = db.Column(db.String(128), default=db.func.now())
     
     def save_item(self):

@@ -3,7 +3,7 @@ from flask import request
 from flask_restful import Resource, reqparse
 from flask_jwt_extended import (create_access_token, create_refresh_token, jwt_required, jwt_refresh_token_required,
                                 get_jwt_identity, get_raw_jwt)
-from models.model import UserItemModel
+from models.model import UserItemModel, User, ItemModel
 from db import ma, db
 
 class Item(Resource):
@@ -43,6 +43,10 @@ class Item(Resource):
         try:
             user_item = UserItemModel(user_id=args['user_id'], item_id=args['item_id'])
             user_item.save()
+            user = User.query.get(args['user_id'])
+            item = ItemModel.query.get(args['item_id'])
+            user.point = user.point - item.coins
+            db.session.commit()
             return {'message': 'Item bought'}, 200
         except:
             print(traceback.format_exc())
