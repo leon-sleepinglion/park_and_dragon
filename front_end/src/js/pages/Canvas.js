@@ -1,11 +1,25 @@
 import React from 'react'
-import { Row, Col, Card, Button } from 'antd'
-import { Loop, Stage, Sprite, World, Body, TileMap } from 'react-game-kit'
+import { Button, Card } from 'antd'
+import { Loop, Stage, TileMap } from 'react-game-kit'
 import character1 from '../../assets/character1.png'
-import cone1 from '../../assets/cone1.png'
-import cone2 from '../../assets/cone2.png'
-import cone3 from '../../assets/cone3.png'
+import burger1 from '../../assets/burger1.png'
+import burger2 from '../../assets/burger2.png'
+import burger3 from '../../assets/burger3.png'
+import ff1 from '../../assets/ff1.png'
+import icecream1 from '../../assets/icecream1.png'
+import nugget1 from '../../assets/nugget1.png'
+import background1 from '../../assets/background1.png'
+
 import PropTypes from 'prop-types'
+
+const images = [
+  burger1,
+  burger2,
+  burger3,
+  ff1,
+  icecream1,
+  nugget1
+]
 
 const randomIndex = (length) => {
   return Math.floor(Math.random() * length)
@@ -18,10 +32,11 @@ const clamp = (num, min, max) => {
 const stageWidth = 360
 const stageHeight = 640
 const playerTileSize = 64
-const obstacleTileSize = 32
+const obstacleTileSize = 48
+const obstacleBoundY = stageHeight - obstacleTileSize - 60
 
 const playerX = (stageWidth - playerTileSize) / 2
-const playerY = stageHeight - playerTileSize
+const playerY = stageHeight - playerTileSize - 90
 
 export default class Canvas extends React.Component {
 
@@ -50,12 +65,7 @@ export default class Canvas extends React.Component {
   }
 
   createObstacle() {
-
-
     if (this.state.obstacleCount < this.state.maxObstacles){
-      const images = [
-        cone1, cone2, cone3
-      ]
       this.state.obstacles[this.state.obstacleCount] = {
         x: clamp(Math.random() * stageWidth, 0, stageWidth - obstacleTileSize),
         y: -obstacleTileSize,
@@ -68,10 +78,6 @@ export default class Canvas extends React.Component {
         obstacles: this.state.obstacles
       })
     }
-  }
-
-  updatePlayerPosition(x, y) {
-    this.setState({ currentPlayerX: x, currentPlayerY: y })
   }
 
   addScore() {
@@ -92,19 +98,10 @@ export default class Canvas extends React.Component {
     })
   }
 
-  resetObstacle(obstacleID) {
-    this.state.obstacles[obstacleID] = {
-      x: clamp(Math.random() * stageWidth, 0, stageWidth - obstacleTileSize),
-      y: -obstacleTileSize,
-      id: obstacleID
+  handleCollision() {
+    if (this.state.timer > 0){
+      this.addScore()
     }
-
-    this.setState({ obstacles: this.state.obstacles })
-  }
-
-  handleCollision(obstacleID) {
-    this.resetObstacle(obstacleID)
-    this.addScore()
   }
 
   handleOnMouseMove(e) {
@@ -134,6 +131,7 @@ export default class Canvas extends React.Component {
           this.state.timer > 0 ?
             <Loop>
               <Stage width={ stageWidth } height={ stageHeight }>
+                <Background/>
                 <Player x={ this.state.currentPlayerX }
                         y={ this.state.currentPlayerY }
                         tileSize={ playerTileSize }/>
@@ -143,8 +141,7 @@ export default class Canvas extends React.Component {
                     <Obstacle obstacleID={ index }
                               x={ ob.x }
                               y={ ob.y }
-                              handleOutOfStage={ (id) => this.resetObstacle(id) }
-                              handleCollision={ (id) => this.handleCollision(id) }
+                              handleCollision={ () => this.handleCollision() }
                               playerX={ this.state.currentPlayerX }
                               playerY={ this.state.currentPlayerY }
                               playerWidth={ playerTileSize }
@@ -166,6 +163,40 @@ export default class Canvas extends React.Component {
               <Button onClick={ () => this.resetScore() }>Start game</Button>
             </Card>
         }
+      </div>
+    )
+  }
+}
+
+class Background extends React.Component {
+  static contextTypes = {
+    loop: PropTypes.object,
+  };
+
+  loop = () => {
+    //Do stuff here
+  }
+
+  componentDidMount() {
+    this.loopID = this.context.loop.subscribe(this.loop);
+  }
+
+  componentWillUnmount() {
+    this.context.loop.unsubscribe(this.loopID);
+  }
+
+  render() {
+    return (
+      <div style={ {
+        transform: `translate(${0}px, ${0}px)`,
+      } }>
+        <TileMap
+          src={ background1 }
+          tileSize={ 720 }
+          columns={ 1 }
+          rows={ 1 }
+          layers={ [[1]] }
+        />
       </div>
     )
   }
@@ -225,18 +256,22 @@ class Obstacle extends React.Component {
     if (playerX < thisX + tileSize &&
       playerX + playerW > thisX &&
       playerY < thisY + tileSize &&
-      playerH + playerY > thisY)
-      this.props.handleCollision(this.props.obstacleID)
+      playerH + playerY > thisY){
+      this.props.handleCollision()
+      this.setState({
+        x: clamp(Math.random() * stageWidth, 0, stageWidth - obstacleTileSize),
+        y: -obstacleTileSize
+      })
+    }
   }
 
   loop = () => {
     //Do stuff here
     this.checkForCollision()
-    if (this.state.y + this.props.tileSize > stageHeight){
-      this.props.handleOutOfStage(this.props.obstacleID)
+    if (this.state.y + this.props.tileSize > obstacleBoundY){
       this.setState({
-        x: this.props.x,
-        y: this.props.y
+        x: clamp(Math.random() * stageWidth, 0, stageWidth - obstacleTileSize),
+        y: -obstacleTileSize
       })
     } else {
       this.setState({ y: this.state.y + this.props.dropSpeed })
