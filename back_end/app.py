@@ -31,7 +31,7 @@ def check_if_token_in_blacklist(decrypted_token):
 import resources.Authentication as Authentication
 api.add_resource(Authentication.UserLogin, '/login')
 api.add_resource(Authentication.UserLogout, '/logout')
-api.add_resource(Authentication.TwoFactorAuth, '/twizo')
+# api.add_resource(Authentication.TwoFactorAuth, '/twizo')
 api.add_resource(Authentication.DemoProtectedRoute, '/protected')
 
 import resources.Task as Task

@@ -25,14 +25,15 @@ class UserLogin(Resource):
                 # refresh_token = create_refresh_token(identity=args['name'])
                 # my_secret = ''.join([random.choice(string.ascii_letters + string.digits) for n in range(32)])
                 # secret.append(my_secret)
-                messageId = twizo_request(current_user.phone_number)
-                credentials = [messageId, current_user.email_address, current_user.id]
-                secret.append(messageId)
+                # messageId = twizo_request(current_user.phone_number)
+                # credentials = [messageId, current_user.email_address, current_user.id]
+                # secret.append(messageId)
+                access_token = create_access_token(args['email'], expires_delta=datetime.timedelta(hours=3))
                 return {
-                    # 'message': 'Logged in as {}'.format(current_user.email_address),
-                    # 'access_token': access_token
-                    'message': 'Passed first factor.',
-                    'credentials': credentials
+                    'message': 'Logged in as {}'.format(current_user.email_address),
+                    'access_token': access_token
+                    # 'message': 'Passed first factor.',
+                    # 'credentials': credentials
                 }
             else:
                 return {'message': 'Wrong credentials'}, 400
@@ -51,32 +52,32 @@ class UserLogout(Resource):
         except:
             return {'message': 'Something went wrong'}, 500
 
-class TwoFactorAuth(Resource):
-    parser = reqparse.RequestParser()
-    parser.add_argument('messageId')
-    parser.add_argument('token')
-    parser.add_argument('email')
-
-    def post(self):
-        args = TwoFactorAuth.parser.parse_args()
-        try:
-            # print(secret)
-            # print(args['messageId'])
-            status = twizo_verify(args['messageId'], args['token'])
-            # print(args['messageId'] in secret)
-            # print(status)
-            if (status == 1 or status == '1') and args['messageId'] in secret:
-                secret.remove(args['messageId'])
-                access_token = create_access_token(args['email'], expires_delta=datetime.timedelta(hours=1))
-                return {
-                    # 'message': 'Logged in as {}'.format(args['email']),
-                    'access_token': access_token
-                }
-            else:
-                return {'message': 'Error logging in.'}, 400
-        except:
-            print(traceback.format_exc())
-            return {'message': 'Error logging in.'}, 400
+# class TwoFactorAuth(Resource):
+#     parser = reqparse.RequestParser()
+#     parser.add_argument('messageId')
+#     parser.add_argument('token')
+#     parser.add_argument('email')
+#
+#     def post(self):
+#         args = TwoFactorAuth.parser.parse_args()
+#         try:
+#             # print(secret)
+#             # print(args['messageId'])
+#             status = twizo_verify(args['messageId'], args['token'])
+#             # print(args['messageId'] in secret)
+#             # print(status)
+#             if (status == 1 or status == '1') and args['messageId'] in secret:
+#                 secret.remove(args['messageId'])
+#                 # access_token = create_access_token(args['email'], expires_delta=datetime.timedelta(hours=3))
+#                 return {
+#                     # 'message': 'Logged in as {}'.format(args['email']),
+#                     'access_token': access_token
+#                 }
+#             else:
+#                 return {'message': 'Error logging in.'}, 400
+#         except:
+#             print(traceback.format_exc())
+#             return {'message': 'Error logging in.'}, 400
 
 class DemoProtectedRoute(Resource):
     @jwt_required

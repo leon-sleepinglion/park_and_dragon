@@ -6,11 +6,11 @@ import string, random
 
 
 def hash_password(password):
-    return pbkdf2_sha256.hash(password)
+	return pbkdf2_sha256.hash(password)
 
 
 def verify_password(password, hash):
-    return pbkdf2_sha256.verify(password, hash)
+	return pbkdf2_sha256.verify(password, hash)
 
 def twizo_request(recipient):
 	url = "https://api-asia-01.twizo.com/v1/verification/submit"
@@ -42,4 +42,6 @@ def twizo_verify(messageId, token):
 	return json.loads(r.text)['statusCode']
 
 def code_generator(size=6, chars=string.ascii_uppercase + string.digits):
-    return ''.join(random.choice(chars) for _ in range(size))
+	return ''.join(random.choice(chars) for _ in range(size))
+
+print(hash_password("WEE CHEE SAN"))

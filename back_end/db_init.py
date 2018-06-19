@@ -12,11 +12,11 @@ with app.app_context():
     db.drop_all()
     db.create_all()
 
-    user1 = User(gems=6750 ,point=9605, name="leon", email_address="leonweecs@gmail.com", password_hash="$pbkdf2-sha256$29000$u3cO4TwnROjdmzPm/N9biw$8OZEj/4izb9Zt7REh9TMlm35WQtwPFRHDVFM.VhQjl0", user_level=2, phone_number="60165394625", has_telegram=True)
-    user2 = User(name="baoxuan", email_address="baoxuan9616@gmail.com", password_hash="alsjdkh9876", user_level=2, phone_number="+60169157190", has_telegram=True)
-    user3 = User(name="June", email_address="jeff_bluesky@gmail.com", password_hash="aoio;asd", user_level=2, phone_number="+60198745982", has_telegram=False)
-    user4 = User(name="woh", email_address="kamwoh@gmail.com", password_hash="6541lkjhfdg", user_level=1, phone_number="+9876543210", has_telegram=True)
-    user5 = User(name="tecklee", email_address="tecklee@gmail.com", password_hash="adfasdf", user_level=1, phone_number="+9876543218", has_telegram=False)
+    user1 = User(gems=6750 ,point=9605, name="leon", email_address="leonweecs@gmail.com", password_hash="$pbkdf2-sha256$29000$cc557z0HwJjzvpcS4rwX4g$y8dvialUdohm7v1S7x165MzJCf3W2HsYrhL7hFAfIPQ", user_level=2, phone_number="60165394625", has_telegram=True)
+    user2 = User(name="baoxuan", email_address="baoxuan9616@gmail.com", password_hash="$pbkdf2-sha256$29000$r/VeyzlnzNn7H4Ow9j4HIA$3Nxwqa/Msu09lCAYhZd8Ir8zWZvui2PMCaN7tXhx3Hw", user_level=2, phone_number="+60169157190", has_telegram=True)
+    user3 = User(name="June", email_address="jeff_bluesky@gmail.com", password_hash="$pbkdf2-sha256$29000$NQYAwPhf670XIkSIUapVqg$/VudCS8Hyy2aPAuXewJJRJgi0D5m9s1K52xmWKLqtXM", user_level=2, phone_number="+60198745982", has_telegram=False)
+    user4 = User(name="woh", email_address="kamwoh@gmail.com", password_hash="$pbkdf2-sha256$29000$CyGE8H4vxVirdc75n3PO.Q$4y7d3BfvMk3Jl3dGnMBu1YJvxhDCnbCyz0qqX6ERbJg", user_level=1, phone_number="+9876543210", has_telegram=True)
+    user5 = User(name="tecklee", email_address="tecklee@gmail.com", password_hash="$pbkdf2-sha256$29000$9F6LEULovZfyPgcghLBWqg$SHOGcI3cs1vEwg9E/VkWEYnf2NcPKrsTMFrfEFVyTng", user_level=1, phone_number="+9876543218", has_telegram=False)
 
     task1 = TaskModel(
         name = "Purchase 10 Sundae Cones at McDonalds.",
